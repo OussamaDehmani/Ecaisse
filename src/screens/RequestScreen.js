@@ -19,8 +19,6 @@ import React, {
 import { StatusBar } from 'expo-status-bar';
 
 import { colors, parameters } from "../global/styles";
-import MapComponent from "../components/MapComponent";
-import { Avatar, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 

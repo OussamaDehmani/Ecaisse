@@ -12,7 +12,6 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../global/styles";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import { OriginContext } from "../contexts/contexts";
 
 export default function DestinationScreen() {
   const navigation = useNavigation();

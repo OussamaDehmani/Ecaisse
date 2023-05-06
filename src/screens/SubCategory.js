@@ -11,20 +11,13 @@ import {
   StatusBar,
   ImageBackground,
 } from "react-native";
-// import {LinearGradient} from 'react-native-linear-gradient';
-import { LinearGradient } from "expo-linear-gradient";
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import { Icon } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
-import { filterData, carsAround } from "../global/data";
-import { mapStyle } from "../global/mapStyle";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import * as Location from "expo-location";
 import { useNavigation } from "@react-navigation/native";
-import { rideData } from "../global/data";
 import { SCREEN_HEIGHT, WINDOW_WIDTH } from "@gorhom/bottom-sheet";
 import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
-import { color } from "react-native-reanimated";
 import DetailsCategory from '../screens/DetailsCategory'
 import Essayer from '../components/Essayer';
 
