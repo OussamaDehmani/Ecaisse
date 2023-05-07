@@ -21,18 +21,19 @@ export default function App() {
     <NavigationContainer>
       <Home.Navigator>
             
+      <Home.Screen 
+                name ="StorageVendor"
+                component = {StorageVendor}
+                options ={{headerShown:false}}
+    />
+           
             <Home.Screen 
                 name ="HomeScreen"
                 component = {HomeScreen}
                 options ={{headerShown:false}}
     />
     
-            <Home.Screen 
-                name ="StorageVendor"
-                component = {StorageVendor}
-                options ={{headerShown:false}}
-    />
-           
+         
            
             
        <Home.Screen 

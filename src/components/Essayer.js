@@ -15,11 +15,11 @@ const Essayer = ({ title, image, onPress }) => {
 const styles = StyleSheet.create({
   touchable: {
    
-    width:'40%',
+    width:'20%',
     margin:5,
     marginHorizontal:16,
     alignItems: 'center',
-    justifyContent:'center',
+    // justifyContent:'center',
     borderWidth: 1,
     borderRadius: 8,
     backgroundColor:'white'

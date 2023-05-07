@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 import ButtonClick from '../components/ButtonClick'
+import HomeScreen from './HomeScreen';
 const StorageVendor = () => {
     const navigation = useNavigation();
     return (
@@ -12,7 +13,7 @@ const StorageVendor = () => {
         <View style={styles.container}>
             <View style={styles.body} >
                 <View style={styles.left} >
-                    <View style={styles.type}>
+                    {/* <View style={styles.type}>
                         <View style={{ borderColor: colors.primary, border: 2, borderWidth: 3, marginHorizontal: 10 }}></View>
                         <Text style={styles.typeText} >smasung A02</Text>
                         <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
@@ -67,16 +68,16 @@ const StorageVendor = () => {
                         </View>
                     </View>
 
-                    <ButtonClick title="Telechargement" />
+                    <ButtonClick title="Telechargement" /> */}
 
-
+                        <HomeScreen></HomeScreen>
 
                 </View>
 
                 <View style={styles.right} >
                     <View style={styles.rightTop} >
                         <View style={styles.rightTopright} >
-                            <Text  >Trafi Normal</Text>
+                            <Text>Trafi Normal</Text>
                             <Icon
                                 type="material-community"
                                 name="plus"
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
 
     },
     left: {
-        width: '20%',
+        width: '60%',
         marginHorizontal: 5
 
     },
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
         borderColor:colors.primary,
         borderWidth:2,
         flex:1,
-        width:'60%'
+        width:'25%'
     },
     type: {
         marginVertical: 20,
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         border: 2,
         borderWidth: 2,
-        height: '60%',
+        height: '10%',
         position: 'relative'
 
     },

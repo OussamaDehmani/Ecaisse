@@ -33,9 +33,11 @@ const HomeScreen = () => {
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
       { }
-      <ScrollView bounces={false}>
+      {/* <ScrollView bounces={false}> */}
         
-
+<View>
+<View>
+        </View>
         <View>
         
         <View style={styles.cardbutto}>
@@ -127,6 +129,11 @@ const HomeScreen = () => {
         title="Autre"
         image={require('../../assets/Iphone.jpeg')}
         
+      />  
+      <Essayer
+        title="Autre"
+        image={require('../../assets/Iphone.jpeg')}
+        
       />
          <Essayer
         title="Ajouter"
@@ -138,7 +145,6 @@ const HomeScreen = () => {
         
       />
 
-          {/*  end new card */}
 
            </View>
 
@@ -147,43 +153,17 @@ const HomeScreen = () => {
             style={{
               alignItems: "center",
               justifyContent: "center",
-              // border: 1,
-              // borderWidth: 1,
               margin: 8,
               paddingTop: 6,
             }}
           >
-            {/* {latlng != {} ? (
-              <MapView
-                ref={_map}
-                region={{
-                  latitude:  	46.829853,
-                  longitude:  -71.254028,
-                  latitudeDelta: 0.015*3,
-                  longitudeDelta: 0.0121*3,
-                 
-                }}
-                provider={PROVIDER_GOOGLE}
-                style={styles.map}
-                customMapStyle={mapStyle}
-                showsUserLocation={true}
-                followsUserLocation={true}
-              // initialRegion = {{latitude:latlng.latitude,longitude:latlng,latitudeDelta:0.008,longitudeDelta:0.008}}
-              >
-                {rideData.map((item, index) => (
-                  <Marker
-                    coordinate={item}
-                    key={index.toString()}
-                    style={styles.carsAround}
-                  />
-                ))}
-              </MapView>
-            ) : (
-              <></>
-            )} */}
+           
           </View>
         </View>
-      </ScrollView>
+
+       
+</View>
+      {/* </ScrollView> */}
       <StatusBar style="light" backgroundColor="#2058c0" translucent={true} />
     </View>
     // </View>
@@ -195,7 +175,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "ios" ? 60 : 80,
+    paddingTop: Platform.OS === "ios" ? 60 : 0,
     backgroundColor: colors.grey10,
     // paddingBottom: 30,
     // paddingTop: parameters.statusBarHeight,
