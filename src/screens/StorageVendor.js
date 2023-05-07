@@ -13,63 +13,7 @@ const StorageVendor = () => {
         <View style={styles.container}>
             <View style={styles.body} >
                 <View style={styles.left} >
-                    {/* <View style={styles.type}>
-                        <View style={{ borderColor: colors.primary, border: 2, borderWidth: 3, marginHorizontal: 10 }}></View>
-                        <Text style={styles.typeText} >smasung A02</Text>
-                        <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
-                    </View>
-                    <View style={styles.info}>
-                        <View style={styles.infocard} >
-                            <Text style={styles.infocardText}>Clé :</Text>
-                            <Text style={styles.infocardText}>1</Text>
-                        </View>
-                        <View style={styles.infocard}><Text style={styles.infocardText}>PG :</Text><Text style={styles.infocardText}>890</Text></View>
-                        <View style={styles.infocard}><Text style={styles.infocardText}>PD :</Text><Text style={styles.infocardText}>1000</Text></View>
-                    </View>
-
-                    <View style={styles.BarCode}>
-                        <View style={styles.BarCodeCard}>
-                            <Icon
-                                type="material-community"
-                                name="camera"
-                                color={colors.primary}
-                                style={styles.image2}
-                                size={35}
-                            />
-                            <Text style={styles.typeText} >Code IMEI :</Text>
-                            <Text style={styles.typeText} >344345</Text>
-                        </View>
-                        <View style={styles.BarCodeCard}>
-                            <TouchableOpacity onPress={() => setModalVisible(true)} >
-                                <Icon
-                                    type="material-community"
-                                    name="barcode-scan"
-                                    color={colors.primary}
-                                    style={styles.image2}
-                                    size={35}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-                    <View style={styles.display}>
-                        <View style={styles.IconDisplay}>
-                            <TouchableOpacity style={styles.clickIconDisplay}>
-                                <Icon
-                                    type="material-community"
-                                    name="plus"
-                                    color={colors.primary2}
-                                    style={styles.image2}
-                                    size={35}
-                                /></TouchableOpacity>
-
-                        </View>
-                        <View style={styles.BarCodeCard}>
-                        </View>
-                    </View>
-
-                    <ButtonClick title="Telechargement" /> */}
-
+                    
                         <HomeScreen></HomeScreen>
 
                 </View>

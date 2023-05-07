@@ -19,15 +19,146 @@ import { useNavigation } from "@react-navigation/native";
 import { SCREEN_HEIGHT, WINDOW_WIDTH } from "@gorhom/bottom-sheet";
 import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
 import Essayer from '../components/Essayer';
-
-
-const HomeScreen = () => {
+  import * as SQLite from 'expo-sqlite'
   
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
-  const navigation = useNavigation();
-  const _map = useRef(1);
-  const [latlng, setLatLng] = useState({});
+  // import {createTableCategory,createCategory} from '../Store/Categories';
+
+
+
+  const HomeScreen = () => {
+    const db = SQLite.openDatabase('test.db');
+
+    const navigation = useNavigation();
+    const [data, setData] = useState([]);
+
+    const createTable=async()=>{
+      // await db.transaction(tx => {
+      //   tx.executeSql(
+      //     'CREATE TABLE IF NOT EXISTS category (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, logo TEXT, type TEXT);'
+      //   );
+      //   console.log(db)
+      //   console.log('table created');
+
+      // });
+      db.transaction(tx => {
+        tx.executeSql(
+          'PRAGMA table_info();',
+          [],
+          (_, result) => {
+            const tableNames = [];
+            for (let i = 0; i < result.rows.length; i++) {
+              const tableName = result.rows.item(i).name;
+              tableNames.push(tableName);
+              setData(tableNames)
+            }
+            console.log(`Tables in the database: ${tableNames.join(', ')}`);
+          },
+          (_, error) => {
+            console.log('PRAGMA table_info failed', error);
+            return true;
+          }
+        );
+      });
+      console.log(data)
+      // await db.transaction(tx => {
+      //   tx.executeSql(
+      //     'INSERT INTO category (id,name, logo, type) VALUES (?,?,?,?);',
+      //     [1,'name','logo','t'],
+      //     (_, result) => {
+      //       console.log('Insertion successful');
+      //     },
+      //     (_, error) => {
+      //       console.log('Insertion failed', error);
+      //       return true;
+      //     }
+      //   );
+      // }, error => {
+      //   console.log('Transaction failed', error);
+      // }, () => {
+      //   console.log('Transaction completed');
+      // });
+
+      // await db.transaction(tx => {
+      //   tx.executeSql(
+      //     'SELECT * FROM category',
+      //     [],
+      //     (_, result) => {
+      //       console.log(result.rows.raw()); // this will log all the rows in the category table
+      //     },
+      //     (_, error) => {
+      //       console.log('Select failed', error);
+      //       return true;
+      //     }
+      //   );
+      // });
+    }
+  
+    // CRUD operations on the category table
+
+    // create a new category
+    const addCategory = () => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'INSERT INTO category (id,name, logo, type) VALUES (?,?,?,?);',
+          [1,'name','logo','t'],
+          (_, result) => {
+            console.log('Insertion successful');
+          },
+          (_, error) => {
+            console.log('Insertion failed', error);
+            return true;
+          }
+        );
+      }, error => {
+        console.log('Transaction failed', error);
+      }, () => {
+        console.log('Transaction completed');
+      });
+
+      db.transaction(tx => {
+        tx.executeSql(
+          'SELECT * FROM category',
+          [],
+          (_, result) => {
+            console.log(result.rows.raw()); // this will log all the rows in the category table
+          },
+          (_, error) => {
+            console.log('Select failed', error);
+            return true;
+          }
+        );
+      });
+    };
+    
+    // read all categories
+    const getCategories = () => {
+      return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+          tx.executeSql(
+            'SELECT * FROM category;',
+            [],
+            (_, { rows }) => {
+              setData(rows._array)
+              resolve(rows._array);
+            },
+            (_, error) => {
+              reject(error);
+            }
+          );
+        });
+      });
+    };
+    
+
+    
+
+    useEffect( () => {
+      createTable();
+      addCategory();
+      
+    }, [db])
+    
+
 
   return (
     // <View>
@@ -37,9 +168,11 @@ const HomeScreen = () => {
         
 <View>
 <View>
+  {data.map(el=><>{el.name}</>)}
+  <Text>hh</Text>
         </View>
         <View>
-        
+
         <View style={styles.cardbutto}>
              {/*  start new card */}
              <TouchableOpacity

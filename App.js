@@ -11,7 +11,6 @@ import DestinationScreen from './src/screens/DestinationScreen';
 import AddCategory from './src/screens/AddCategory'
 import DetailsCategory from './src/screens/DetailsCategory'
 import AddSubcategory from './src/screens/AddSubcategory'
-import Exemple from './src/screens/Exemple'
 import StorageVendor from './src/screens/StorageVendor'
 import HomeScreen from './src/screens/HomeScreen';
 const Home = createStackNavigator();
