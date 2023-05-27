@@ -17,6 +17,7 @@ import React, {
   useCallback,
 } from "react";
 import { StatusBar } from 'expo-status-bar';
+import { Icon } from "react-native-elements";
 
 import { colors, parameters } from "../global/styles";
 import { useNavigation } from "@react-navigation/native";

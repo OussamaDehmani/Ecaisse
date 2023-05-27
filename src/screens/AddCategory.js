@@ -1,6 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet,TouchableOpacity,TextInput } from 'react-native';
-import {useState} from 'react';
+import * as SQLite from 'expo-sqlite';
+import { useState, useEffect } from 'react';
+import { colors, parameters } from "../global/styles";
+
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
+import * as DocumentPicker from 'expo-document-picker';
 import ButtonClick from '../components/ButtonClick'
 const ContentComponent = () => {
   const [enteredTitle, setenteredTitle] = useState('');
@@ -9,7 +15,33 @@ const ContentComponent = () => {
     navigate("HomeScreen");
     
   };
- 
+  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+  const [isLoading, setIsLoading] = useState(true);
+  const [names, setNames] = useState([]);
+  const [currentName, setCurrentName] = useState(undefined);
+
+  const addName = () => {
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO categories (name) values (?)', [enteredTitle],
+        (txObj, resultSet) => {
+          let existingNames = [...names];
+          existingNames.push({ id: resultSet.insertId, name: enteredTitle});
+          setNames(existingNames);
+          setCurrentName(undefined);
+          console.log('inserted')
+        },
+        (txObj, error) => console.log('error1'.error)
+      );
+      db.transaction(tx => {
+        tx.executeSql('SELECT * FROM categories', null,
+          (txObj, resultSet) => setNames(resultSet.rows._array),
+          (txObj, error) => console.log('error2'.error)
+        );
+      });
+    });
+  }
+
+
   return (
     <View style={styles.container}>
        <View style={styles.searchSection}>
@@ -26,8 +58,12 @@ const ContentComponent = () => {
       
       
 
- <ButtonClick   title="Envoyer" />
-         
+            <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={addName}
+      style={[styles.button,{backgroundColor: colors.blue}]}>
+      <Text style={styles.titleButton}>Ajouter</Text>
+    </TouchableOpacity>         
      
     </View>
   );
@@ -43,6 +79,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#DDDDDD',
     flex:1
+  },
+  button: {
+    width: '20%',
+    height:50,
+    borderRadius: 10,
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    flexDirection: 'row',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+  },
+  Infoicon: {
+    marginRight: 20,
+  },
+  titleButton: {
+    fontSize: 20,
+    color: colors.white,
+    fontWeight: '700',
   },
   title: {
     fontSize: 18,

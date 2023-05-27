@@ -21,9 +21,11 @@ import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
 import { color } from "react-native-reanimated";
 import { SearchBar } from 'react-native-elements';
 import Essayer from '../components/Essayer';
+import * as SQLite from 'expo-sqlite';
 
-const DetailsCategory = () => {
-  
+const DetailsCategory = ({data}) => {
+  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
@@ -31,13 +33,56 @@ const DetailsCategory = () => {
   const [latlng, setLatLng] = useState({});
   const [searchText, setSearchText] = React.useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [categories, setCategories] = useState([]);
   const handleSearch = (text) => {
     setSearchText(text);
-    // Do something with the search text
+    db.transaction(tx => {
+      tx.executeSql(`SELECT * FROM categories WHERE name like = "%${text}%"`, null,
+        (txObj, resultSet) => {
+          if (resultSet.rowsAffected > 0) {
+            setCategories(resultSet.rows._array); 
+            console.log(resultSet)
+          }
+        },
+        (txObj, error) => console.log(error)
+      );
+    });
   };
 
+  const deleteCategory = (id) => {
+    // db.transaction(tx => {
+    //   tx.executeSql('DELETE FROM categories WHERE id = ?', [id],
+    //     (txObj, resultSet) => {
+    //       if (resultSet.rowsAffected > 0) {
 
+    //       }
+    //     },
+    //     (txObj, error) => console.log(error)
+    //   );
+    // });
 
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM categories', null,
+        (txObj, resultSet) => setCategories(resultSet.rows._array),
+        (txObj, error) => console.log('error3'.error)
+      );
+    });
+
+  };
+  const getCategory = () => {
+
+   
+  }
+
+  useEffect(() => {
+    
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM categories', null,
+        (txObj, resultSet) => setCategories(resultSet.rows._array),
+        (txObj, error) => console.log('error3'.error)
+      );
+    });   
+  }, []);
   return (
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
@@ -69,8 +114,24 @@ const DetailsCategory = () => {
            <View style={{borderColor:colors.primary, border:2,borderWidth:1,marginBottom:20,marginHorizontal:10 }}></View>
 
            <View style={styles.cardbuttom}> 
-          
-          <Essayer
+          { categories.map(el=>(
+             <TouchableOpacity  style={styles.touchable} key={el.id}>
+             <View style={styles.container}>
+             <Icon
+                           type="material-community"
+                           name="delete-circle"
+                           color={colors.primary}
+                           style={styles.image2}
+                           size={35}
+                           onPress={deleteCategory(el.id)}
+                         />
+               <Image source={require('../../assets/Iphon.png')} style={styles.image} />
+                 <Text style={styles.title}>{el.name}</Text>
+             </View>
+           </TouchableOpacity>
+          ))}
+     
+          {/* <Essayer
          title="Iphone"
          image={require('../../assets/Iphon.png')}
          onPress={() => {
@@ -83,32 +144,28 @@ const DetailsCategory = () => {
          image={require('../../assets/Huawei.jpeg')}
        
        />
+       
         <Essayer
-         title="Show me"
-         image={require('../../assets/Showme.png')}
-         
-       />
-        <Essayer
-         title="Nokiya"
+         title="Nokia"
          image={require('../../assets/Nokiya.jpeg')}
          
-       />
+       /> */}
         <Essayer
-         title="smasung"
+         title="Samsung"
          image={require('../../assets/smasung.png')}
         
        />
-        <Essayer
+        {/* <Essayer
          title="Autre"
          image={require('../../assets/Iphone.jpeg')}
          
-       />
+       /> */}
           <Essayer
          title="Ajouter"
          image={require('../../assets/Ajoute.jpeg')}
          onPress={() => {
              
-          navigation.navigate("AddSubcategory");
+          navigation.navigate("AddCategory");
         }}
          
        />
@@ -128,34 +185,7 @@ const DetailsCategory = () => {
               paddingTop: 6,
             }}
           >
-            {/* {latlng != {} ? (
-              <MapView
-                ref={_map}
-                region={{
-                  latitude:  	46.829853,
-                  longitude:  -71.254028,
-                  latitudeDelta: 0.015*3,
-                  longitudeDelta: 0.0121*3,
-                 
-                }}
-                provider={PROVIDER_GOOGLE}
-                style={styles.map}
-                customMapStyle={mapStyle}
-                showsUserLocation={true}
-                followsUserLocation={true}
-              // initialRegion = {{latitude:latlng.latitude,longitude:latlng,latitudeDelta:0.008,longitudeDelta:0.008}}
-              >
-                {rideData.map((item, index) => (
-                  <Marker
-                    coordinate={item}
-                    key={index.toString()}
-                    style={styles.carsAround}
-                  />
-                ))}
-              </MapView>
-            ) : (
-              <></>
-            )} */}
+      
           </View>
         </View>
       </ScrollView>
@@ -192,6 +222,34 @@ const DetailsCategory = () => {
   );
 };
 const styles = StyleSheet.create({
+  touchable: {
+   
+    width:'20%',
+    margin:5,
+    marginHorizontal:16,
+    alignItems: 'center',
+    // justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor:'white'
+  },
+  containerCard: {
+    
+  
+    padding: 6,
+    
+  },
+  image: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
+
   sections2: {
     backgroundColor: colors.black,
   },

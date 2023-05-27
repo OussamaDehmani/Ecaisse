@@ -4,7 +4,7 @@
 // 20 - on iOS device
 // X - on Android platfrom (runtime value)
 // 0 - on all other platforms (default)
-//console.log(getStatusBarHeight());
+//console.log(getStatusBarHeight());    
 
 // will be 0 on Android, because You pass true to skipAndroid
 //console.log(getStatusBarHeight(true));

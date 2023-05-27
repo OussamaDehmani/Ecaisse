@@ -11,6 +11,7 @@ import {
   StatusBar,
   ImageBackground,
 } from "react-native";
+import * as SQLite from 'expo-sqlite';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import { Icon } from "react-native-elements";
@@ -22,13 +23,25 @@ import Essayer from '../components/Essayer';
 
 
 const HomeScreen = () => {
-  
+  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   const _map = useRef(1);
-  const [latlng, setLatLng] = useState({});
+  const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+   
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM categories', null,
+        (txObj, resultSet) => setCategories(resultSet.rows._array),
+        (txObj, error) => console.log(error)
+      );
+    });
+
+    setIsLoading(false);
+  }, [db]);
   return (
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
