@@ -1,47 +1,106 @@
 import React from 'react';
-import { View, TextInput, StyleSheet,Text } from 'react-native';
+import { View, TextInput, StyleSheet,Text,   ScrollView,TouchableOpacity
+ } from 'react-native';
 import  ButtonClick from '../components/ButtonClick'
 import { color } from "react-native-reanimated";
 import { colors } from 'react-native-elements';
-const AddSubcategory = ({ title, quantity, wholesalePrice, retailPrice, onChange }) => {
+import * as SQLite from 'expo-sqlite';
+import { useNavigation } from "@react-navigation/native";
+
+const db = SQLite.openDatabase('mynewdb.db');
+
+const AddSubcategory = ({ route }) => {
+  const id  = route.params;
+  const navigation = useNavigation();
+  const [title, setTitle] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [wholesalePrice, setWholesalePrice] = React.useState('');
+  const [retailPrice, setRetailPrice] = React.useState('');
+
+  const addSubCategory = () => {
+    
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO sub_categories1 (name,idCategory,prix_detail,prix_gros,quantity) values (?,?,?,?,?)',
+       [title,id,retailPrice?retailPrice:0,wholesalePrice?wholesalePrice:0,quantity?quantity:0],
+        (txObj, resultSet) => {
+        
+      
+          console.log('inserted')
+        },
+        (txObj, error) => console.log('error1'.error)
+      );
+      navigation.navigate('subCategoy',id)
+    });
+  }
+
   return (
+    <ScrollView showsVerticalScrollIndicator={false}>
+
     <View style={styles.container}>
+
      <Text style={styles.title}>Ajouter sous Catégorie</Text>
-<View style={styles.containerTop}>
+    <View style={styles.containerTop}>
       <TextInput
         style={styles.input}
         placeholder="Titre"
         value={title}
-        onChangeText={(text) => onChange({ ...{ title: text } })}
+        onChangeText={(text) => setTitle(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Quantité"
         value={quantity}
         keyboardType="numeric"
-        onChangeText={(text) => onChange({ ...{ quantity: text } })}
+        onChangeText={(text) => setQuantity(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Prix de gros"
         value={wholesalePrice}
         keyboardType="numeric"
-        onChangeText={(text) => onChange({ ...{ wholesalePrice: text } })}
+        onChangeText={(text) => setWholesalePrice(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Prix de détail"
         value={retailPrice}
         keyboardType="numeric"
-        onChangeText={(text) => onChange({ ...{ retailPrice: text } })}
+        onChangeText={(text) => setRetailPrice(text)}
       />
-</View>
-             <ButtonClick title="Enregistrer" />
+      </View>
+      <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={addSubCategory}
+      style={[styles.button,{backgroundColor: colors.blue}]}>
+     
+      <Text style={styles.titleButton}>Ajouter</Text>
+    </TouchableOpacity>
     </View>
+    </ScrollView>
+
   );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    width: '100%',
+    height:50,
+    borderRadius: 10,
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    flexDirection: 'row',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+  },
+  
+  titleButton: {
+    fontSize: 20,
+    color: colors.blue,
+    backgroundColor:colors.primary,
+    fontWeight: '700',
+  },
   container: {
     backgroundColor: '#fff',
     padding: 16,

@@ -20,14 +20,27 @@ import { SCREEN_HEIGHT, WINDOW_WIDTH } from "@gorhom/bottom-sheet";
 import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
 import DetailsCategory from '../screens/DetailsCategory'
 import Essayer from '../components/Essayer';
+import * as SQLite from 'expo-sqlite';
 
-const SubCategory = () => {
-
+const SubCategory = ({ route }) => {
+  const id= route.params;
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   const _map = useRef(1);
   const [latlng, setLatLng] = useState({});
+  const [subcategories, setSubcategories] = useState([]);
+  const db = SQLite.openDatabase('mynewdb.db');
+  useEffect(() => {
+ //get all subcategories from db
+  db.transaction(tx => {
+    tx.executeSql('SELECT * FROM sub_categories1 WHERE idCategory = ?', [id],
+      (txObj, resultSet) => setSubcategories(resultSet.rows._array),
+      (txObj, error) => console.log(error)
+    );
+  }
+  );
+}, [id])
 
   return (
     // <View>
@@ -67,58 +80,39 @@ const SubCategory = () => {
 
           <View style={styles.cardbuttom}>
 
-            <Essayer
-              title="Iphone"
-              image={require('../../assets/Iphon.png')}
+
+          { subcategories.map(el=>(
+             <TouchableOpacity  style={styles.touchableCard} key={el.id}                           
+             onPress={() => {
+              navigation.navigate("subCategoy",el.id);
+            }}             >
+             <View style={styles.containerCard}>
+             <Icon
+                           type="material-community"
+                           name="delete-circle"
+                           color={colors.primary}
+                           style={styles.imageCard}
+                           size={35}
+                         />
+               <Image source={require('../../assets/Iphon.png')} style={styles.imageCard} />
+                 <Text style={styles.titleCard}>{el.name}</Text>
+             </View>
+           </TouchableOpacity>
+          ))}
+        
+    
+
+<TouchableOpacity  style={styles.touchableCard}                           
               onPress={() => {
-
-                navigation.navigate("DetailsCategory");
-              }}
-            />
-
-                
-         <Essayer
-        title="Iphone"
-        image={require('../../assets/Iphon.png')}
-        onPress={() => {
             
-          navigation.navigate("subCategoy");
-        }}
-      />
-         <Essayer
-        title="Huawei"
-        image={require('../../assets/huawaei1.jpeg')}
-      
-      />
-       <Essayer
-        title="Show me"
-        image={require('../../assets/Showme.png')}
-        
-      />
-       <Essayer
-        title="Nokiya"
-        image={require('../../assets/nokia1.jpeg')}
-        
-      />
-       <Essayer
-        title="smasung"
-        image={require('../../assets/sumsung2.png')}
-       
-      />
-       <Essayer
-        title="Autre"
-        image={require('../../assets/Iphone.jpeg')}
-        
-      />
-         <Essayer
-        title="Ajouter"
-        image={require('../../assets/Ajoute.jpeg')}
-        onPress={() => {
+                navigation.navigate("AddSubcategory",id);
+              }}>
+             <View style={styles.containerCard}>
             
-          navigation.navigate("AddCategory");
-        }}
-        
-      />
+               <Image source={require('../../assets/Ajoute.jpeg')} style={styles.imageCard} />
+                 <Text style={styles.titleCard}>Ajouter</Text>
+             </View>
+           </TouchableOpacity>
            
        
           
@@ -178,6 +172,33 @@ const SubCategory = () => {
   );
 };
 const styles = StyleSheet.create({
+  touchableCard: {
+   
+    width:'20%',
+    margin:5,
+    marginHorizontal:16,
+    alignItems: 'center',
+    // justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor:'white'
+  },
+  containerCard: {
+    
+  
+    padding: 6,
+    
+  },
+  imageCard: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+  },
+  titleCard: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
   sections2: {
     backgroundColor: colors.black,
   },

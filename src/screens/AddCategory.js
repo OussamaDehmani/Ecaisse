@@ -15,7 +15,7 @@ const ContentComponent = () => {
     navigate("HomeScreen");
     
   };
-  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+  const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
   const [isLoading, setIsLoading] = useState(true);
   const [names, setNames] = useState([]);
   const [currentName, setCurrentName] = useState(undefined);

@@ -24,7 +24,7 @@ import Essayer from '../components/Essayer';
 import * as SQLite from 'expo-sqlite';
 
 const DetailsCategory = ({data}) => {
-  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+  const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -34,19 +34,34 @@ const DetailsCategory = ({data}) => {
   const [searchText, setSearchText] = React.useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [categories, setCategories] = useState([]);
-  const handleSearch = (text) => {
+  const [result, setResult] = useState([]);
+
+const search= async()=>{
+// search in table categories based on name
+console.log(searchText)
+if(searchText!= ''){
+  db.transaction(tx => {
+    tx.executeSql('SELECT * FROM categories WHERE name LIKE ?', ['%'+searchText+'%'],
+      (txObj, resultSet) => {
+        if (resultSet.rows.length > 0) {
+          setCategories(resultSet.rows._array); 
+        }else{
+          getAllCategory()
+        }
+      },
+      (txObj, error) => console.log(error)
+    );
+  }
+  );
+
+}
+ 
+
+}
+  const handleSearch = async(text) => {
     setSearchText(text);
-    db.transaction(tx => {
-      tx.executeSql(`SELECT * FROM categories WHERE name like = "%${text}%"`, null,
-        (txObj, resultSet) => {
-          if (resultSet.rowsAffected > 0) {
-            setCategories(resultSet.rows._array); 
-            console.log(resultSet)
-          }
-        },
-        (txObj, error) => console.log(error)
-      );
-    });
+    await search();
+
   };
 
   const deleteCategory = (id) => {
@@ -61,27 +76,28 @@ const DetailsCategory = ({data}) => {
     //   );
     // });
 
-    db.transaction(tx => {
-      tx.executeSql('SELECT * FROM categories', null,
+    // db.transaction(tx => {
+    //   tx.executeSql('SELECT * FROM categories', null,
+    //     (txObj, resultSet) => setCategories(resultSet.rows._array),
+    //     (txObj, error) => console.log('error3'.error)
+    //   );
+    // });
+
+  };
+  const getAllCategory = async() => {
+     db.transaction(async tx => {
+      await tx.executeSql('SELECT * FROM categories', null,
         (txObj, resultSet) => setCategories(resultSet.rows._array),
         (txObj, error) => console.log('error3'.error)
       );
     });
-
-  };
-  const getCategory = () => {
-
    
   }
 
   useEffect(() => {
     
-    db.transaction(tx => {
-      tx.executeSql('SELECT * FROM categories', null,
-        (txObj, resultSet) => setCategories(resultSet.rows._array),
-        (txObj, error) => console.log('error3'.error)
-      );
-    });   
+     getAllCategory()
+  
   }, []);
   return (
     // <View>
@@ -92,13 +108,13 @@ const DetailsCategory = ({data}) => {
             <View style={{width:'100%',marginBottom:20,flexDirection:'row',justifyContent:'space-around',alignContent:'center' }}>
             <View style={{width:'70%'}}>
             <SearchBar
-          containerStyle={{ backgroundColor: 'white',borderColor:colors.black,borderWidth:2,borderRadius: 20}}
-          inputContainerStyle={{ backgroundColor: 'white' }}
-          inputStyle={{ color: 'black', fontSize: 16 }}
-      placeholder="Rechercher..."
-      onChangeText={handleSearch}
-      value={searchText}
-    />
+              containerStyle={{ backgroundColor: 'white',borderColor:colors.black,borderWidth:2,borderRadius: 20}}
+              inputContainerStyle={{ backgroundColor: 'white' }}
+              inputStyle={{ color: 'black', fontSize: 16 }}
+              placeholder="Rechercher..."
+              onChangeText={handleSearch}
+              value={searchText}
+            />
             </View>
        
            <TouchableOpacity onPress={() => setModalVisible(true)} style={{width:'20%',marginTop:20}}>
@@ -115,7 +131,10 @@ const DetailsCategory = ({data}) => {
 
            <View style={styles.cardbuttom}> 
           { categories.map(el=>(
-             <TouchableOpacity  style={styles.touchable} key={el.id}>
+             <TouchableOpacity  style={styles.touchable} key={el.id}                           
+             onPress={() => {
+              navigation.navigate("subCategoy",el.id);
+            }}             >
              <View style={styles.container}>
              <Icon
                            type="material-community"

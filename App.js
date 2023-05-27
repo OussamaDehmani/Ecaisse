@@ -25,15 +25,29 @@ import * as DocumentPicker from 'expo-document-picker';
 const Home = createStackNavigator();
 
 export default function App() {
-  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+  const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
   const [isLoading, setIsLoading] = useState(true);
   const [names, setNames] = useState([]);
   const [currentName, setCurrentName] = useState(undefined);
   useEffect(() => {
+   
+    db.transaction((tx) => {
+      tx.executeSql("SELECT * FROM sqlite_master WHERE type = 'table'", [], 
+      (tx,results) => {
+        console.log(`get result ${results}`);
+      });
+    });
+ 
     db.transaction(tx => {
       tx.executeSql('CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
     });
 
+     
+    db.transaction(tx => {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS sub_categories1 (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,idCategory INTEGER,prix_detail INTEGER,prix_gros INTEGER,quantity INTEGER)')
+    });
+    
+  
     }, []);
 
   return (
@@ -72,11 +86,11 @@ export default function App() {
             /> 
         
           
-              {/* <Home.Screen 
+              <Home.Screen 
                 name ="subCategoy"
                 component = {SubCategory}
                 options ={{headerShown:true}}
-            />  */}
+            /> 
                <Home.Screen 
                 name ="AddCategory"
                 component = {AddCategory}

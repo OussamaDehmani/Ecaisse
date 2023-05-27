@@ -16,13 +16,13 @@ export default function Categories() {
       const permissions = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
       if (permissions.granted) {
         const base64 = await FileSystem.readAsStringAsync(
-          FileSystem.documentDirectory + 'SQLite/example.db',
+          FileSystem.documentDirectory + 'SQLite/mynewdb.db',
           {
             encoding: FileSystem.EncodingType.Base64
           }
         );
 
-        await FileSystem.StorageAccessFramework.createFileAsync(permissions.directoryUri, 'example.db', 'application/octet-stream')
+        await FileSystem.StorageAccessFramework.createFileAsync(permissions.directoryUri, 'mynewdb.db', 'application/octet-stream')
         .then(async (uri) => {
           await FileSystem.writeAsStringAsync(uri, base64, { encoding : FileSystem.EncodingType.Base64 });
         })
@@ -31,7 +31,7 @@ export default function Categories() {
         console.log("Permission not granted");
       }
     } else {
-      await Sharing.shareAsync(FileSystem.documentDirectory + 'SQLite/example.db');
+      await Sharing.shareAsync(FileSystem.documentDirectory + 'SQLite/mynewdb.db');
     }
   }
 
@@ -54,25 +54,25 @@ export default function Categories() {
         }
       );
 
-      await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'SQLite/example.db', base64, { encoding: FileSystem.EncodingType.Base64 });
+      await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'SQLite/mynewdb.db', base64, { encoding: FileSystem.EncodingType.Base64 });
       await db.closeAsync();
-      setDb(SQLite.openDatabase('example.db'));
+      setDb(SQLite.openDatabase('mynewdb.db'));
     }
   };
 
   useEffect(() => {
-    db.transaction(tx => {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS names (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
-    });
+    // db.transaction(tx => {
+    //   tx.executeSql('CREATE TABLE IF NOT EXISTS names (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
+    // });
 
-    db.transaction(tx => {
-      tx.executeSql('SELECT * FROM names', null,
-        (txObj, resultSet) => setNames(resultSet.rows._array),
-        (txObj, error) => console.log(error)
-      );
-    });
+    // db.transaction(tx => {
+    //   tx.executeSql('SELECT * FROM names', null,
+    //     (txObj, resultSet) => setNames(resultSet.rows._array),
+    //     (txObj, error) => console.log(error)
+    //   );
+    // });
 
-    setIsLoading(false);
+    // setIsLoading(false);
   }, [db]);
 
   if (isLoading) {

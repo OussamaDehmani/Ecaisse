@@ -23,7 +23,7 @@ import Essayer from '../components/Essayer';
 
 
 const HomeScreen = () => {
-  const [db, setDb] = useState(SQLite.openDatabase('example.db'));
+  const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
