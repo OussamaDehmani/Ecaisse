@@ -33,6 +33,7 @@ const DetailsCategory = ({ data }) => {
   const [latlng, setLatLng] = useState({});
   const [searchText, setSearchText] = React.useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisiblee, setModalVisiblee] = useState(false);
   const [categories, setCategories] = useState([]);
   const [result, setResult] = useState([]);
 
@@ -174,10 +175,7 @@ const DetailsCategory = ({ data }) => {
 
               <View style={styles.container}>
                 <TouchableOpacity 
-                  onPress={() => {
-
-                    console.log("click icon")
-                  }} 
+                  onPress={() => setModalVisiblee(true)}
                 >
                   <Icon
                     type="material-community"
@@ -310,6 +308,29 @@ const DetailsCategory = ({ data }) => {
                 size={35}
               />
             </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisiblee}
+        onRequestClose={() => setModalVisiblee(false)}
+      >
+        <View style={styles.modal}>
+          <View style={styles.modalContent}>
+            <TouchableOpacity onPress={() => setModalVisiblee(false)}>
+              <Text style={styles.closeButton}>X</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.modalItem} 
+            onPress={() =>   navigation.navigate("AddCategory")}
+            >
+              <Text style={styles.modalItemText}>Modification</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.modalItem}  onPress={() =>   navigation.navigate("RequestScreen")}>
+              <Text style={styles.modalItemText}>Suppression</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -639,6 +660,43 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
+  },
+  modal: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    width: '30%',
+    alignItems: 'center',
+  },
+  closeButton: {
+    color: '#007AFF',
+    marginBottom:20,
+    fontSize:20
+    
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 20,
+  },
+  modalItem: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    width: '100%',
+    alignItems: 'center',
+  },
+  modalItemText: {
+    fontSize: 18,
+    color: '#007AFF',
   },
 
 
