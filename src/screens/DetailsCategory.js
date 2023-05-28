@@ -174,6 +174,42 @@ const DetailsCategory = ({ data }) => {
           </View>
           ))}
        
+       {/* />
+       
+        <Essayer
+         title="Nokia"
+         image={require('../../assets/Nokiya.jpeg')}
+         
+       />  */}
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity 
+                  onPress={() => setModalVisiblee(true)}
+                >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity  
+                 onPress={() => {
+
+                  console.log("click card")
+                }} 
+                >
+                  <Image
+                    source={require('../../assets/smasung.png')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung cion</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
 
 
@@ -588,7 +624,11 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#fff',
+<<<<<<< HEAD
     padding: 10,
+=======
+    padding: 20,
+>>>>>>> 195bb70 (Add screen modification)
     borderRadius: 10,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -597,13 +637,21 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     color: '#007AFF',
+<<<<<<< HEAD
     marginBottom:6,
+=======
+    marginBottom:20,
+>>>>>>> 195bb70 (Add screen modification)
     fontSize:20
     
   },
   modalTitle: {
+<<<<<<< HEAD
     fontSize: 18,
     color: '#007AFF',
+=======
+    fontSize: 24,
+>>>>>>> 195bb70 (Add screen modification)
     fontWeight: 'bold',
     marginVertical: 20,
   },
