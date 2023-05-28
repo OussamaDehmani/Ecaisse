@@ -1,30 +1,34 @@
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, StatusBar, TextInput, Switch, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 import ButtonClick from '../components/ButtonClick'
- import DetailsCategory from './DetailsCategory';
+import DetailsCategory from './DetailsCategory';
 
 const StockageExiste = () => {
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const [text, setText] = useState('');
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const navigation = useNavigation();
 
     return (
 
         <View style={styles.container}>
             <View style={styles.body} >
-        <View style={styles.left} >
-                    
-               
+                <View style={styles.left} >
+
+
                     <DetailsCategory />
 
-                </View> 
+                </View>
 
                 <View style={styles.right} >
-                 
+
                     <View style={styles.cardstcok} >
-                    <Icon
+                        <Icon
                             type="material-community"
                             name="shopping"
                             color={colors.white}
@@ -32,11 +36,11 @@ const StockageExiste = () => {
                             size={25}
                         />
                         <Text style={styles.cardstcokText} >Commande </Text>
-                        
+
                     </View>
                     {/* ///container */}
                     <ScrollView>
-                    
+
 
                         <View style={styles.rightContainer}>
 
@@ -50,21 +54,37 @@ const StockageExiste = () => {
                                 <Text style={styles.rightContainercardText} >Smasung A02 </Text>
                                 <Text style={styles.rightContainercardText} >800 </Text>
                             </View>
+
+                            <View style={styles.rightBottom}>
+                                <TextInput
+                                    style={styles.rightBottominput}
+                                    value={text}
+                                    onChangeText={setText}
+                                    placeholder="Totale"
+                                />
+                                <View style={styles.rightBottomRight} >
+
+                                    <Text style={styles.rightContainercardText} >Oui</Text>
+                                    <Switch
+                                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                                        ios_backgroundColor="#3e3e3e"
+                                        onValueChange={toggleSwitch}
+                                        value={isEnabled}
+                                    />
+                                    <Text style={styles.rightContainercardText} >Non</Text>
+
+                                </View>
+
+                            </View>
+
                         </View>
 
 
                         <View style={styles.buttom}>
                             <View style={styles.buttomclick}>
-
                                 <ButtonClick title="Tatal" />
                             </View>
-                            <View style={styles.buttomclick}>
-
-                            <ButtonClick title="Espace" />
-                            </View>
-
-                          
-
                         </View>
 
                     </ScrollView>
@@ -85,18 +105,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 30,
-        flexWrap:'wrap'
-      },
+        flexWrap: 'wrap',
+        paddingBottom: 20
+    },
     left: {
-        width: '60%',
+        width: '90%',
         marginHorizontal: 5
 
     },
     right: {
-        borderColor:colors.primary,
-        borderWidth:2,
-        flex:1,
-        width:'30%'
+        borderColor: colors.primary,
+        borderWidth: 2,
+        flex: 1,
+        width: '10%'
     },
     type: {
         marginVertical: 20,
@@ -158,14 +179,15 @@ const styles = StyleSheet.create({
         bottom: 20,
         right: 20,
     },
-   
+
     cardstcok: {
 
         backgroundColor: colors.blue,
         height: 50,
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        paddingHorizontal: 10
 
 
     },
@@ -188,7 +210,8 @@ const styles = StyleSheet.create({
     },
     cardstcokText: {
         fontSize: 25,
-        
+        paddingLeft: 10
+
     },
 
     rightCenter: {
@@ -207,34 +230,54 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         overlayColor: colors.primary,
         borderWidth: 2,
-        margin:4
+        margin: 4
 
     },
     rightCenteText: {
         fontSize: 12
     },
     rightContainer: {
-        height:500,
-        marginTop: 12
+        marginTop: 12,
     },
     rightContainercard: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap'
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        paddingHorizontal: 40
     },
     rightContainercardText: {
-        
+
         fontSize: 15,
         fontWeight: 'bold'
     },
 
     buttom: {
-        flexDirection:'row',
-        justifyContent:'space-between'
+        flexDirection: 'row',
+        justifyContent: 'center'
     },
-    buttomclick:{
-        width:'46%',
-        marginHorizontal:4
+    buttomclick: {
+        width: '88%',
+        marginHorizontal: 20
+    },
+
+    rightBottom: {
+         marginTop:10,
+        marginHorizontal: 40,
+        flexDirection: 'row'
+    },
+    rightBottomRight:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft:20
+    },
+    rightBottominput:{
+            height: 50,
+            width:'78%',
+            borderColor: 'gray',
+            borderWidth: 1,
+            paddingHorizontal: 10,
+            marginVertical: 10,
+            borderRadius:20
     }
 
 

@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 
-const Essayer = ({id, title, image, onPress }) => {
+const Essayer = ({ id, title, image, onPress }) => {
   const deleteName = (id) => {
     db.transaction(tx => {
       tx.executeSql('DELETE FROM names WHERE id = ?', [id],
@@ -17,39 +17,45 @@ const Essayer = ({id, title, image, onPress }) => {
     });
   };
   return (
-    <TouchableOpacity onPress={onPress} style={styles.touchable}>
+    <View onPress={onPress} style={styles.touchable}>
+
       <View style={styles.container}>
-      <Icon
-                    type="material-community"
-                    name="delete-circle"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
-        <Image source={image} style={styles.image} />
+        <TouchableOpacity onPress={onPress} >
+          <Icon
+            type="material-community"
+            name="delete-circle"
+            color={colors.primary}
+            style={styles.image2}
+            size={35}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={onPress} >
+          <Image source={image} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   touchable: {
-   
-    width:'20%',
-    margin:5,
-    marginHorizontal:16,
+
+    width: '20%',
+    margin: 5,
+    marginHorizontal: 16,
     alignItems: 'center',
     // justifyContent:'center',
     borderWidth: 1,
     borderRadius: 8,
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   container: {
-    
-  
+
+
     padding: 6,
-    
+
   },
   image: {
     width: 64,
