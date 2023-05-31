@@ -31,20 +31,31 @@ export default function App() {
   const [currentName, setCurrentName] = useState(undefined);
   useEffect(() => {
    
-    db.transaction((tx) => {
-      tx.executeSql("SELECT * FROM sqlite_master WHERE type = 'table'", [], 
+    // db.transaction((tx) => {
+    //   tx.executeSql("SELECT * FROM sqlite_master WHERE type = 'table'", [], 
+    //   (tx,results) => {
+    //     console.log(`get result ${results}`);
+    //   });
+    // }); 
+       db.transaction((tx) => {
+      tx.executeSql( 'DROP TABLE IF EXISTS categories',[], 
       (tx,results) => {
         console.log(`get result ${results}`);
       });
     });
  
     db.transaction(tx => {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
+      tx.executeSql('CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,uri TEXT)')
     });
 
      
     db.transaction(tx => {
       tx.executeSql('CREATE TABLE IF NOT EXISTS sub_categories1 (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,idCategory INTEGER,prix_detail INTEGER,prix_gros INTEGER,quantity INTEGER)')
+    });
+
+       
+    db.transaction(tx => {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS commandes1 ( id INTEGER PRIMARY KEY AUTOINCREMENT,date datetime default current_timestamp, name TEXT,idSubCategory INTEGER,prix_detail INTEGER,prix_gros INTEGER,quantity INTEGER)')
     });
     
   

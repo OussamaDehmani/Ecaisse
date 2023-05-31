@@ -131,98 +131,55 @@ const DetailsCategory = ({ data }) => {
           <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
 
           <View style={styles.cardbuttom}>
-            {categories.map(el => (
-              <TouchableOpacity style={styles.touchable} key={el.id}
-                onPress={() => {
-                  navigation.navigate("subCategoy", el.id);
-                }}             >
-                <View style={styles.container}>
-                  <Icon
-                    type="material-community"
-                    name="delete-circle"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                    onPress={deleteCategory(el.id)}
-                  />
-                  <Image source={require('../../assets/Iphon.png')} style={styles.image} />
-                  <Text style={styles.title}>{el.name}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+          <View style={styles.touchable}>
 
-            {/* <Essayer
-         title="Iphone"
-         image={require('../../assets/Iphon.png')}
-         onPress={() => {
-             
-           navigation.navigate("DetailsCategory");
-         }}
-       />
-          <Essayer
-         title="Huawei"
-         image={require('../../assets/Huawei.jpeg')}
+    <TouchableOpacity 
+      onPress={() => setModalVisiblee(true)}
+    >
+      <Text style={styles.title}>...</Text>
+    
+    </TouchableOpacity>
+
+    <TouchableOpacity  
+    onPress={() => {
+
+      console.log("click card")
+    }} 
+    >
+      <Image
+        source={require('../../assets/smasung.png')}
+        style={styles.image} />
+      <Text style={styles.title}>Samsung</Text>
+    </TouchableOpacity>
+
+    </View>
+
+
+
+          { categories.map(el=>(
+          <View style={styles.touchable}>
+          <TouchableOpacity key={el.id} 
+          onPress={() => setModalVisiblee(true)}
+          >
+          <Text style={styles.title}>...</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          onPress={() => {
+          navigation.navigate("subCategoy",el.id);
+          }} 
+          >
+          <Image source={{ uri: el.uri }} style={styles.image} />
+          <Text style={styles.title}>{el.name}</Text>
+          </TouchableOpacity>
+          </View>
+          ))}
        
-       />
-       
-        <Essayer
-         title="Nokia"
-         image={require('../../assets/Nokiya.jpeg')}
-         
-       /> */}
-
-            <View style={styles.touchable}>
-
-                <TouchableOpacity 
-                  onPress={() => setModalVisiblee(true)}
-                >
-                   <Text style={styles.title}>...</Text>
-                 
-                </TouchableOpacity>
-
-                <TouchableOpacity  
-                 onPress={() => {
-
-                  console.log("click card")
-                }} 
-                >
-                  <Image
-                    source={require('../../assets/smasung.png')}
-                    style={styles.image} />
-                  <Text style={styles.title}>Samsung</Text>
-                </TouchableOpacity>
-         
-            </View>
 
 
 
-            <View style={styles.touchable}>
+           
 
-                <TouchableOpacity  
-                   onPress={() => setModalVisiblee(true)}
-                >
-                   <Text style={styles.title}>...</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-
-                    navigation.navigate("AddCategory");
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/smasung.png')}
-                    style={styles.image} />
-                  <Text style={styles.title}>Samsung</Text>
-                </TouchableOpacity>
-              
-            </View>
-
-            {/* <Essayer
-         title="Autre"
-         image={require('../../assets/Iphone.jpeg')}
-         
-       /> */}
+      
 
 
             <View style={styles.touchable}>
@@ -243,7 +200,7 @@ const DetailsCategory = ({ data }) => {
                   <Image
                     source={require('../../assets/Ajoute.jpeg')}
                     style={styles.image} />
-                  <Text style={styles.title}>Samsung</Text>
+                  <Text style={styles.title}>Ajouter</Text>
                 </TouchableOpacity>
               
             </View>
@@ -252,6 +209,7 @@ const DetailsCategory = ({ data }) => {
 
             {/*  end new card */}
 
+          </View>
           </View>
 
 
@@ -267,7 +225,7 @@ const DetailsCategory = ({ data }) => {
           >
 
           </View>
-        </View>
+        {/* </View> */}
       </ScrollView>
       <StatusBar style="light" backgroundColor="#2058c0" translucent={true} />
 
@@ -666,3 +624,4 @@ const styles = StyleSheet.create({
 
 });
 export default DetailsCategory;
+
