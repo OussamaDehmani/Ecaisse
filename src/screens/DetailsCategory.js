@@ -184,17 +184,11 @@ const DetailsCategory = ({ data }) => {
 
             <View style={styles.touchable}>
 
-              <View style={styles.container}>
                 <TouchableOpacity 
                   onPress={() => setModalVisiblee(true)}
                 >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
+                   <Text style={styles.title}>...</Text>
+                 
                 </TouchableOpacity>
 
                 <TouchableOpacity  
@@ -206,9 +200,9 @@ const DetailsCategory = ({ data }) => {
                   <Image
                     source={require('../../assets/smasung.png')}
                     style={styles.image} />
-                  <Text style={styles.title}>Samsung cion</Text>
+                  <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
-              </View>
+         
             </View>
 
 
@@ -625,10 +619,14 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: '#fff',
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding: 10,
 =======
     padding: 20,
 >>>>>>> 195bb70 (Add screen modification)
+=======
+    padding: 10,
+>>>>>>> 935b94b (ADD style card)
     borderRadius: 10,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -638,20 +636,29 @@ const styles = StyleSheet.create({
   closeButton: {
     color: '#007AFF',
 <<<<<<< HEAD
+<<<<<<< HEAD
     marginBottom:6,
 =======
     marginBottom:20,
 >>>>>>> 195bb70 (Add screen modification)
+=======
+    marginBottom:6,
+>>>>>>> 935b94b (ADD style card)
     fontSize:20
     
   },
   modalTitle: {
+<<<<<<< HEAD
 <<<<<<< HEAD
     fontSize: 18,
     color: '#007AFF',
 =======
     fontSize: 24,
 >>>>>>> 195bb70 (Add screen modification)
+=======
+    fontSize: 18,
+    color: '#007AFF',
+>>>>>>> 935b94b (ADD style card)
     fontWeight: 'bold',
     marginVertical: 20,
   },
