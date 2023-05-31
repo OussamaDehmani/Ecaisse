@@ -144,7 +144,7 @@ if(searchText!= ''){
                            size={35}
                            onPress={deleteCategory(el.id)}
                          />
-               <Image source={require('../../assets/Iphon.png')} style={styles.image} />
+               <Image source={{ uri: el.uri }} style={styles.image} />
                  <Text style={styles.title}>{el.name}</Text>
              </View>
            </TouchableOpacity>
