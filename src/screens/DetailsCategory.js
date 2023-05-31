@@ -173,17 +173,11 @@ const DetailsCategory = ({ data }) => {
 
             <View style={styles.touchable}>
 
-              <View style={styles.container}>
                 <TouchableOpacity 
                   onPress={() => setModalVisiblee(true)}
                 >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
+                   <Text style={styles.title}>...</Text>
+                 
                 </TouchableOpacity>
 
                 <TouchableOpacity  
@@ -195,24 +189,19 @@ const DetailsCategory = ({ data }) => {
                   <Image
                     source={require('../../assets/smasung.png')}
                     style={styles.image} />
-                  <Text style={styles.title}>Samsung cion</Text>
+                  <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
-              </View>
+         
             </View>
 
 
 
             <View style={styles.touchable}>
 
-              <View style={styles.container}>
-                <TouchableOpacity  >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
+                <TouchableOpacity  
+                   onPress={() => setModalVisiblee(true)}
+                >
+                   <Text style={styles.title}>...</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -226,7 +215,7 @@ const DetailsCategory = ({ data }) => {
                     style={styles.image} />
                   <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
-              </View>
+              
             </View>
 
             {/* <Essayer
@@ -238,15 +227,11 @@ const DetailsCategory = ({ data }) => {
 
             <View style={styles.touchable}>
 
-              <View style={styles.container}>
-                <TouchableOpacity  >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
+            <TouchableOpacity 
+                 
+                >
+                   <Text style={styles.title}></Text>
+                 
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -260,7 +245,7 @@ const DetailsCategory = ({ data }) => {
                     style={styles.image} />
                   <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
-              </View>
+              
             </View>
 
             
@@ -340,17 +325,7 @@ const DetailsCategory = ({ data }) => {
   );
 };
 const styles = StyleSheet.create({
-  touchable: {
-
-    width: '20%',
-    margin: 5,
-    marginHorizontal: 16,
-    alignItems: 'center',
-    // justifyContent:'center',
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: 'white',
-  },
+  
   containerCard: {
 
 
@@ -358,7 +333,7 @@ const styles = StyleSheet.create({
 
   },
   image: {
-    width: 50,
+    width: 64,
     height: 64,
     borderRadius: 32,
   },
@@ -371,13 +346,7 @@ const styles = StyleSheet.create({
   sections2: {
     backgroundColor: colors.black,
   },
-  container: {
-    flex: 1,
-    marginTop: '10%',
-    backgroundColor: colors.grey10,
-    // paddingBottom: 30,
-    // paddingTop: parameters.statusBarHeight,
-  },
+
   header: {
     backgroundColor: colors.bg,
     height: parameters.headerHeight,
@@ -390,13 +359,7 @@ const styles = StyleSheet.create({
   },
 
   image2: {
-    // borderRadius: 30,
-    margin: 0,
-    // backgroundColor: "white",
-    // border:1,
-    // borderWidth:1,
-    // width:70,
-    // height:60
+    marginBottom:10
   },
   image2cars: { height: ScreenWidth, width: ScreenHeight, borderRadius: 0 },
 
@@ -637,24 +600,22 @@ const styles = StyleSheet.create({
   touchable: {
 
     width: '20%',
-    margin: 5,
     marginHorizontal: 16,
     alignItems: 'center',
-    // justifyContent:'center',
+    justifyContent:'center',
     borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: 'white'
+    borderRadius: 10,
+    backgroundColor: 'white',
+    paddingVertical:10
+  
   },
-  container: {
-
-
-    padding: 6,
-
-  },
+  
   image: {
     width: 64,
     height: 64,
     borderRadius: 32,
+    marginLeft:10,
+
   },
   title: {
     fontSize: 20,
@@ -669,7 +630,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -678,12 +639,13 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     color: '#007AFF',
-    marginBottom:20,
+    marginBottom:6,
     fontSize:20
     
   },
   modalTitle: {
-    fontSize: 24,
+    fontSize: 18,
+    color: '#007AFF',
     fontWeight: 'bold',
     marginVertical: 20,
   },
