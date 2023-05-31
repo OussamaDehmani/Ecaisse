@@ -22,6 +22,7 @@ import { color } from "react-native-reanimated";
 import { SearchBar } from 'react-native-elements';
 import Essayer from '../components/Essayer';
 import * as SQLite from 'expo-sqlite';
+import RequestScreen from '../screens/RequestScreen'
 
 const DetailsCategory = ({ data }) => {
   const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
@@ -294,6 +295,10 @@ const DetailsCategory = ({ data }) => {
               />
             </Pressable>
           </View>
+          <RequestScreen/>
+          
+
+          
         </View>
       </Modal>
 

@@ -6,6 +6,8 @@ import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 import ButtonClick from '../components/ButtonClick'
 import DetailsCategory from './DetailsCategory';
+import Header from '../screens/Header'
+
 
 const StockageExiste = () => {
 
@@ -16,8 +18,14 @@ const StockageExiste = () => {
 
     return (
 
-        <View style={styles.container}>
+        <View >
+              <View style={styles.headertop}>
+
+              <Header/>
+              </View>
+
             <View style={styles.body} >
+            
                 <View style={styles.left} >
 
 
@@ -55,7 +63,12 @@ const StockageExiste = () => {
                                 <Text style={styles.rightContainercardText} >800 </Text>
                             </View>
 
-                            <View style={styles.rightBottom}>
+                         
+
+                        </View>
+
+                        <View style={styles.bottomcard}>
+                        <View style={styles.rightBottom}>
                                 <TextInput
                                     style={styles.rightBottominput}
                                     value={text}
@@ -75,11 +88,8 @@ const StockageExiste = () => {
                                     <Text style={styles.rightContainercardText} >Non</Text>
 
                                 </View>
-
+                                </View>
                             </View>
-
-                        </View>
-
 
                         <View style={styles.buttom}>
                             <View style={styles.buttomclick}>
@@ -100,16 +110,18 @@ const StockageExiste = () => {
 };
 
 const styles = StyleSheet.create({
+    headertop:{
 
+         marginTop:-20
+    },
     body: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 30,
         flexWrap: 'wrap',
         paddingBottom: 20
     },
     left: {
-        width: '90%',
+        width: '60%',
         marginHorizontal: 5
 
     },
@@ -117,7 +129,8 @@ const styles = StyleSheet.create({
         borderColor: colors.primary,
         borderWidth: 2,
         flex: 1,
-        width: '10%'
+        height:600,
+        width: '30%',
     },
     type: {
         marginVertical: 20,
@@ -278,6 +291,11 @@ const styles = StyleSheet.create({
             paddingHorizontal: 10,
             marginVertical: 10,
             borderRadius:20
+    },
+
+    bottomcard:{
+        
+        marginTop:300
     }
 
 

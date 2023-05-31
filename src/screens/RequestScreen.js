@@ -56,13 +56,13 @@ const RequestScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.view1}>
-        <Icon
+        {/* <Icon
           type="material-community"
           name="arrow-left"
           color={colors.grey1}
           size={32}
           onPress={() => navigation.goBack()}
-        />
+        /> */}
       </View>
       <Text    style={{
                       fontSize: 18,
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 
   view1: {
     position: "absolute",
-    top: 25,
+    top: 0,
     left: 12,
     backgroundColor: colors.white,
     height: 40,
@@ -121,9 +121,11 @@ const styles = StyleSheet.create({
   },
 
   view2: {
-    marginTop:50,
+    marginTop:10,
     height: SCREEN_HEIGHT * 0.8,
     alignItems: "center",
+    paddingBottom:20,
+    marginBottom:20,
 
     borderBottomEndRadius: 30,
     borderBottomStartRadius: 30,
