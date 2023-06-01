@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ImageBackground,
-  Alert, Modal,Pressable
+  Alert, Modal, Pressable
 } from "react-native";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import { Icon } from "react-native-elements";
@@ -23,7 +23,7 @@ import { SearchBar } from 'react-native-elements';
 import Essayer from '../components/Essayer';
 import * as SQLite from 'expo-sqlite';
 
-const DetailsCategory = ({data}) => {
+const DetailsCategory = ({ data }) => {
   const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
 
   const windowWidth = Dimensions.get("window").width;
@@ -36,29 +36,29 @@ const DetailsCategory = ({data}) => {
   const [categories, setCategories] = useState([]);
   const [result, setResult] = useState([]);
 
-const search= async()=>{
-// search in table categories based on name
-console.log(searchText)
-if(searchText!= ''){
-  db.transaction(tx => {
-    tx.executeSql('SELECT * FROM categories WHERE name LIKE ?', ['%'+searchText+'%'],
-      (txObj, resultSet) => {
-        if (resultSet.rows.length > 0) {
-          setCategories(resultSet.rows._array); 
-        }else{
-          getAllCategory()
-        }
-      },
-      (txObj, error) => console.log(error)
-    );
+  const search = async () => {
+    // search in table categories based on name
+    console.log(searchText)
+    if (searchText != '') {
+      db.transaction(tx => {
+        tx.executeSql('SELECT * FROM categories WHERE name LIKE ?', ['%' + searchText + '%'],
+          (txObj, resultSet) => {
+            if (resultSet.rows.length > 0) {
+              setCategories(resultSet.rows._array);
+            } else {
+              getAllCategory()
+            }
+          },
+          (txObj, error) => console.log(error)
+        );
+      }
+      );
+
+    }
+
+
   }
-  );
-
-}
- 
-
-}
-  const handleSearch = async(text) => {
+  const handleSearch = async (text) => {
     setSearchText(text);
     await search();
 
@@ -84,73 +84,73 @@ if(searchText!= ''){
     // });
 
   };
-  const getAllCategory = async() => {
-     db.transaction(async tx => {
+  const getAllCategory = async () => {
+    db.transaction(async tx => {
       await tx.executeSql('SELECT * FROM categories', null,
         (txObj, resultSet) => setCategories(resultSet.rows._array),
         (txObj, error) => console.log('error3'.error)
       );
     });
-   
+
   }
 
   useEffect(() => {
-    
-     getAllCategory()
-  
+
+    getAllCategory()
+
   }, []);
   return (
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
       { }
       <ScrollView bounces={false}>
-          <View>
-            <View style={{width:'100%',marginBottom:20,flexDirection:'row',justifyContent:'space-around',alignContent:'center' }}>
-            <View style={{width:'70%'}}>
-            <SearchBar
-              containerStyle={{ backgroundColor: 'white',borderColor:colors.black,borderWidth:2,borderRadius: 20}}
-              inputContainerStyle={{ backgroundColor: 'white' }}
-              inputStyle={{ color: 'black', fontSize: 16 }}
-              placeholder="Rechercher..."
-              onChangeText={handleSearch}
-              value={searchText}
-            />
+        <View>
+          <View style={{ width: '100%', marginBottom: 20, flexDirection: 'row', justifyContent: 'space-around', alignContent: 'center' }}>
+            <View style={{ width: '70%' }}>
+              <SearchBar
+                containerStyle={{ backgroundColor: 'white', borderColor: colors.black, borderWidth: 2, borderRadius: 20 }}
+                inputContainerStyle={{ backgroundColor: 'white' }}
+                inputStyle={{ color: 'black', fontSize: 16 }}
+                placeholder="Rechercher..."
+                onChangeText={handleSearch}
+                value={searchText}
+              />
             </View>
-       
-           <TouchableOpacity onPress={() => setModalVisible(true)} style={{width:'20%',marginTop:20}}>
-           <Icon   
+
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={{ width: '20%', marginTop: 20 }}>
+              <Icon
+                type="material-community"
+                name="barcode-scan"
+                color={colors.primary}
+                style={styles.image2}
+                size={35}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
+
+          <View style={styles.cardbuttom}>
+            {categories.map(el => (
+              <TouchableOpacity style={styles.touchable} key={el.id}
+                onPress={() => {
+                  navigation.navigate("subCategoy", el.id);
+                }}             >
+                <View style={styles.container}>
+                  <Icon
                     type="material-community"
-                    name="barcode-scan"
+                    name="delete-circle"
                     color={colors.primary}
                     style={styles.image2}
                     size={35}
+                    onPress={deleteCategory(el.id)}
                   />
-           </TouchableOpacity>
-           </View>
-           <View style={{borderColor:colors.primary, border:2,borderWidth:1,marginBottom:20,marginHorizontal:10 }}></View>
-
-           <View style={styles.cardbuttom}> 
-          { categories.map(el=>(
-             <TouchableOpacity  style={styles.touchable} key={el.id}                           
-             onPress={() => {
-              navigation.navigate("subCategoy",el.id);
-            }}             >
-             <View style={styles.container}>
-             <Icon
-                           type="material-community"
-                           name="delete-circle"
-                           color={colors.primary}
-                           style={styles.image2}
-                           size={35}
-                           onPress={deleteCategory(el.id)}
-                         />
                <Image source={{ uri: el.uri }} style={styles.image} />
-                 <Text style={styles.title}>{el.name}</Text>
-             </View>
-           </TouchableOpacity>
-          ))}
-     
-          {/* <Essayer
+                  <Text style={styles.title}>{el.name}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+
+            {/* <Essayer
          title="Iphone"
          image={require('../../assets/Iphon.png')}
          onPress={() => {
@@ -169,30 +169,108 @@ if(searchText!= ''){
          image={require('../../assets/Nokiya.jpeg')}
          
        /> */}
-        <Essayer
-         title="Samsung"
-         image={require('../../assets/smasung.png')}
-        
-       />
-        {/* <Essayer
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity 
+                  onPress={() => {
+
+                    console.log("click icon")
+                  }} 
+                >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity  
+                 onPress={() => {
+
+                  console.log("click card")
+                }} 
+                >
+                  <Image
+                    source={require('../../assets/smasung.png')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung cion</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity  >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+
+                    navigation.navigate("AddCategory");
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/smasung.png')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* <Essayer
          title="Autre"
          image={require('../../assets/Iphone.jpeg')}
          
        /> */}
-          <Essayer
-         title="Ajouter"
-         image={require('../../assets/Ajoute.jpeg')}
-         onPress={() => {
-             
-          navigation.navigate("AddCategory");
-        }}
-         
-       />
- 
-           {/*  end new card */}
- 
+
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity  >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+
+                    navigation.navigate("AddCategory");
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/Ajoute.jpeg')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          
+
+            
+
+            {/*  end new card */}
+
+          </View>
+
 
           <View
             style={{
@@ -204,14 +282,14 @@ if(searchText!= ''){
               paddingTop: 6,
             }}
           >
-      
+
           </View>
         </View>
       </ScrollView>
       <StatusBar style="light" backgroundColor="#2058c0" translucent={true} />
 
       <Modal
-     
+
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -224,42 +302,42 @@ if(searchText!= ''){
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-                 <Icon   
-                    type="material-community"
-                    name="close"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
+              <Icon
+                type="material-community"
+                name="close"
+                color={colors.primary}
+                style={styles.image2}
+                size={35}
+              />
             </Pressable>
           </View>
         </View>
       </Modal>
-    
+
     </View>
     // </View>
   );
 };
 const styles = StyleSheet.create({
   touchable: {
-   
-    width:'20%',
-    margin:5,
-    marginHorizontal:16,
+
+    width: '20%',
+    margin: 5,
+    marginHorizontal: 16,
     alignItems: 'center',
     // justifyContent:'center',
     borderWidth: 1,
     borderRadius: 8,
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
   containerCard: {
-    
-  
+
+
     padding: 6,
-    
+
   },
   image: {
-    width: 64,
+    width: 50,
     height: 64,
     borderRadius: 32,
   },
@@ -274,7 +352,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop:'10%',
+    marginTop: '10%',
     backgroundColor: colors.grey10,
     // paddingBottom: 30,
     // paddingTop: parameters.statusBarHeight,
@@ -515,25 +593,53 @@ const styles = StyleSheet.create({
   view9: { width: 4, height: 4, borderRadius: 2, backgroundColor: "white" },
   //////////////////////////////
 
- cardbuttom:{
-   flexDirection:'row',
-   flexWrap:"wrap",
-   justifyContent:'space-between'
+  cardbuttom: {
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    justifyContent: 'space-between'
 
- },
- cardbutto:{
-  flexDirection:'row',
-  flexWrap:"wrap",
-  justifyContent:'center',
-  
-},
-centeredView:{
-  flex:1,
-  backgroundColor:'white'
-},
-buttonClose:{
-  marginTop:20
-}
+  },
+  cardbutto: {
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    justifyContent: 'center',
+
+  },
+  centeredView: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  buttonClose: {
+    marginTop: 20
+  },
+
+  touchable: {
+
+    width: '20%',
+    margin: 5,
+    marginHorizontal: 16,
+    alignItems: 'center',
+    // justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: 'white'
+  },
+  container: {
+
+
+    padding: 6,
+
+  },
+  image: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
 
 
 
