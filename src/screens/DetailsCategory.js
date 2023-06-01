@@ -131,7 +131,6 @@ const DetailsCategory = ({ data }) => {
           <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
 
           <View style={styles.cardbuttom}>
-<<<<<<< HEAD
           <View style={styles.touchable}>
 
     <TouchableOpacity 
@@ -174,39 +173,6 @@ const DetailsCategory = ({ data }) => {
           </TouchableOpacity>
           </View>
           ))}
-=======
-            {categories.map(el => (
-              <TouchableOpacity style={styles.touchable} key={el.id}
-                onPress={() => {
-                  navigation.navigate("subCategoy", el.id);
-                }}             >
-                <View style={styles.container}>
-                  <Icon
-                    type="material-community"
-                    name="delete-circle"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                    onPress={deleteCategory(el.id)}
-                  />
-               <Image source={{ uri: el.uri }} style={styles.image} />
-                  <Text style={styles.title}>{el.name}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-
-            {/* <Essayer
-         title="Iphone"
-         image={require('../../assets/Iphon.png')}
-         onPress={() => {
-             
-           navigation.navigate("DetailsCategory");
-         }}
-       />
-          <Essayer
-         title="Huawei"
-         image={require('../../assets/Huawei.jpeg')}
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
        
        {/* />
        
