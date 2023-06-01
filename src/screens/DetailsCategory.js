@@ -131,6 +131,7 @@ const DetailsCategory = ({ data }) => {
           <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
 
           <View style={styles.cardbuttom}>
+<<<<<<< HEAD
           <View style={styles.touchable}>
 
     <TouchableOpacity 
@@ -173,6 +174,39 @@ const DetailsCategory = ({ data }) => {
           </TouchableOpacity>
           </View>
           ))}
+=======
+            {categories.map(el => (
+              <TouchableOpacity style={styles.touchable} key={el.id}
+                onPress={() => {
+                  navigation.navigate("subCategoy", el.id);
+                }}             >
+                <View style={styles.container}>
+                  <Icon
+                    type="material-community"
+                    name="delete-circle"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                    onPress={deleteCategory(el.id)}
+                  />
+               <Image source={{ uri: el.uri }} style={styles.image} />
+                  <Text style={styles.title}>{el.name}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+
+            {/* <Essayer
+         title="Iphone"
+         image={require('../../assets/Iphon.png')}
+         onPress={() => {
+             
+           navigation.navigate("DetailsCategory");
+         }}
+       />
+          <Essayer
+         title="Huawei"
+         image={require('../../assets/Huawei.jpeg')}
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
        
        {/* />
        
@@ -180,6 +214,7 @@ const DetailsCategory = ({ data }) => {
          title="Nokia"
          image={require('../../assets/Nokiya.jpeg')}
          
+<<<<<<< HEAD
        />  */}
 
             <View style={styles.touchable}>
@@ -189,6 +224,26 @@ const DetailsCategory = ({ data }) => {
                 >
                    <Text style={styles.title}>...</Text>
                  
+=======
+       /> */}
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity 
+                  onPress={() => {
+
+                    console.log("click icon")
+                  }} 
+                >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
                 </TouchableOpacity>
 
                 <TouchableOpacity  
@@ -200,6 +255,7 @@ const DetailsCategory = ({ data }) => {
                   <Image
                     source={require('../../assets/smasung.png')}
                     style={styles.image} />
+<<<<<<< HEAD
                   <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
          
@@ -235,12 +291,85 @@ const DetailsCategory = ({ data }) => {
               
             </View>
 
+=======
+                  <Text style={styles.title}>Samsung cion</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity  >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+
+                    navigation.navigate("AddCategory");
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/smasung.png')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* <Essayer
+         title="Autre"
+         image={require('../../assets/Iphone.jpeg')}
+         
+       /> */}
+
+
+            <View style={styles.touchable}>
+
+              <View style={styles.container}>
+                <TouchableOpacity  >
+                  <Icon
+                    type="material-community"
+                    name="copyright"
+                    color={colors.primary}
+                    style={styles.image2}
+                    size={35}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+
+                    navigation.navigate("AddCategory");
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/Ajoute.jpeg')}
+                    style={styles.image} />
+                  <Text style={styles.title}>Samsung</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
             
 
             {/*  end new card */}
 
           </View>
+<<<<<<< HEAD
           </View>
+=======
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
 
 
           <View
@@ -285,6 +414,7 @@ const DetailsCategory = ({ data }) => {
         </View>
       </Modal>
 
+<<<<<<< HEAD
       <Modal
         animationType="fade"
         transparent={true}
@@ -308,12 +438,28 @@ const DetailsCategory = ({ data }) => {
         </View>
       </Modal>
 
+=======
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
     </View>
     // </View>
   );
 };
 const styles = StyleSheet.create({
+<<<<<<< HEAD
   
+=======
+  touchable: {
+
+    width: '20%',
+    margin: 5,
+    marginHorizontal: 16,
+    alignItems: 'center',
+    // justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: 'white',
+  },
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   containerCard: {
 
 
@@ -321,7 +467,7 @@ const styles = StyleSheet.create({
 
   },
   image: {
-    width: 64,
+    width: 50,
     height: 64,
     borderRadius: 32,
   },
@@ -334,7 +480,17 @@ const styles = StyleSheet.create({
   sections2: {
     backgroundColor: colors.black,
   },
+<<<<<<< HEAD
 
+=======
+  container: {
+    flex: 1,
+    marginTop: '10%',
+    backgroundColor: colors.grey10,
+    // paddingBottom: 30,
+    // paddingTop: parameters.statusBarHeight,
+  },
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   header: {
     backgroundColor: colors.bg,
     height: parameters.headerHeight,
@@ -588,6 +744,7 @@ const styles = StyleSheet.create({
   touchable: {
 
     width: '20%',
+<<<<<<< HEAD
     marginHorizontal: 16,
     alignItems: 'center',
     justifyContent:'center',
@@ -598,18 +755,38 @@ const styles = StyleSheet.create({
   
   },
   
+=======
+    margin: 5,
+    marginHorizontal: 16,
+    alignItems: 'center',
+    // justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: 'white'
+  },
+  container: {
+
+
+    padding: 6,
+
+  },
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   image: {
     width: 64,
     height: 64,
     borderRadius: 32,
+<<<<<<< HEAD
     marginLeft:10,
 
+=======
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
   },
+<<<<<<< HEAD
   modal: {
     flex: 1,
     alignItems: 'center',
@@ -673,6 +850,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#007AFF',
   },
+=======
+>>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
 
 
 
