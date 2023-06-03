@@ -180,7 +180,6 @@ const DetailsCategory = ({ data }) => {
          title="Nokia"
          image={require('../../assets/Nokiya.jpeg')}
          
-<<<<<<< HEAD
        />  */}
 
             <View style={styles.touchable}>
@@ -190,26 +189,6 @@ const DetailsCategory = ({ data }) => {
                 >
                    <Text style={styles.title}>...</Text>
                  
-=======
-       /> */}
-
-            <View style={styles.touchable}>
-
-              <View style={styles.container}>
-                <TouchableOpacity 
-                  onPress={() => {
-
-                    console.log("click icon")
-                  }} 
-                >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
                 </TouchableOpacity>
 
                 <TouchableOpacity  
@@ -221,7 +200,6 @@ const DetailsCategory = ({ data }) => {
                   <Image
                     source={require('../../assets/smasung.png')}
                     style={styles.image} />
-<<<<<<< HEAD
                   <Text style={styles.title}>Samsung</Text>
                 </TouchableOpacity>
          
@@ -257,85 +235,12 @@ const DetailsCategory = ({ data }) => {
               
             </View>
 
-=======
-                  <Text style={styles.title}>Samsung cion</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-
-
-            <View style={styles.touchable}>
-
-              <View style={styles.container}>
-                <TouchableOpacity  >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-
-                    navigation.navigate("AddCategory");
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/smasung.png')}
-                    style={styles.image} />
-                  <Text style={styles.title}>Samsung</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            {/* <Essayer
-         title="Autre"
-         image={require('../../assets/Iphone.jpeg')}
-         
-       /> */}
-
-
-            <View style={styles.touchable}>
-
-              <View style={styles.container}>
-                <TouchableOpacity  >
-                  <Icon
-                    type="material-community"
-                    name="copyright"
-                    color={colors.primary}
-                    style={styles.image2}
-                    size={35}
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-
-                    navigation.navigate("AddCategory");
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/Ajoute.jpeg')}
-                    style={styles.image} />
-                  <Text style={styles.title}>Samsung</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
             
 
             {/*  end new card */}
 
           </View>
-<<<<<<< HEAD
           </View>
-=======
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
 
 
           <View
@@ -380,7 +285,6 @@ const DetailsCategory = ({ data }) => {
         </View>
       </Modal>
 
-<<<<<<< HEAD
       <Modal
         animationType="fade"
         transparent={true}
@@ -404,28 +308,12 @@ const DetailsCategory = ({ data }) => {
         </View>
       </Modal>
 
-=======
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
     </View>
     // </View>
   );
 };
 const styles = StyleSheet.create({
-<<<<<<< HEAD
   
-=======
-  touchable: {
-
-    width: '20%',
-    margin: 5,
-    marginHorizontal: 16,
-    alignItems: 'center',
-    // justifyContent:'center',
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: 'white',
-  },
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   containerCard: {
 
 
@@ -446,17 +334,6 @@ const styles = StyleSheet.create({
   sections2: {
     backgroundColor: colors.black,
   },
-<<<<<<< HEAD
-
-=======
-  container: {
-    flex: 1,
-    marginTop: '10%',
-    backgroundColor: colors.grey10,
-    // paddingBottom: 30,
-    // paddingTop: parameters.statusBarHeight,
-  },
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   header: {
     backgroundColor: colors.bg,
     height: parameters.headerHeight,
@@ -710,7 +587,6 @@ const styles = StyleSheet.create({
   touchable: {
 
     width: '20%',
-<<<<<<< HEAD
     marginHorizontal: 16,
     alignItems: 'center',
     justifyContent:'center',
@@ -721,38 +597,19 @@ const styles = StyleSheet.create({
   
   },
   
-=======
-    margin: 5,
-    marginHorizontal: 16,
-    alignItems: 'center',
-    // justifyContent:'center',
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: 'white'
-  },
-  container: {
-
-
-    padding: 6,
-
-  },
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   image: {
     width: 64,
     height: 64,
     borderRadius: 32,
-<<<<<<< HEAD
     marginLeft:10,
 
-=======
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
   },
-<<<<<<< HEAD
+
   modal: {
     flex: 1,
     alignItems: 'center',
@@ -761,15 +618,10 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#fff',
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     padding: 10,
-=======
-    padding: 20,
->>>>>>> 195bb70 (Add screen modification)
-=======
-    padding: 10,
->>>>>>> 935b94b (ADD style card)
+
+
     borderRadius: 10,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -778,30 +630,16 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     color: '#007AFF',
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
     marginBottom:6,
-=======
-    marginBottom:20,
->>>>>>> 195bb70 (Add screen modification)
-=======
-    marginBottom:6,
->>>>>>> 935b94b (ADD style card)
     fontSize:20
     
   },
   modalTitle: {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     fontSize: 18,
     color: '#007AFF',
-=======
-    fontSize: 24,
->>>>>>> 195bb70 (Add screen modification)
-=======
-    fontSize: 18,
-    color: '#007AFF',
->>>>>>> 935b94b (ADD style card)
     fontWeight: 'bold',
     marginVertical: 20,
   },
@@ -816,8 +654,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#007AFF',
   },
-=======
->>>>>>> 660e18ef790014199a180152e68fa4c846f3958a
+
 
 
 
