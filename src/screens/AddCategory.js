@@ -99,8 +99,15 @@ const initializeFolder = async () => {
  
 
   return (
+
     <View style={styles.container}>
-       <View style={styles.searchSection}>
+        <Text style={styles.title}>Ajouter  Catégorie</Text> 
+       <View style={styles.searchSection
+      
+      }>
+
+     
+
               <TextInput
                 style={styles.input}
                 placeholder="Enter Title Catégorie"
@@ -113,7 +120,7 @@ const initializeFolder = async () => {
                     !image  &&    <TouchableOpacity
                     activeOpacity={0.7}
                     onPress={pickImageAsync}
-                    style={[styles.button,{backgroundColor: colors.blue}]}>
+                    style={[styles.button,{backgroundColor: colors.blue, width:'15%'}]}>
                     <Icon
                     type="material-community"
                     name="image"
@@ -146,8 +153,8 @@ const initializeFolder = async () => {
             <TouchableOpacity
       activeOpacity={0.7}
       onPress={addName}
-      style={[styles.button,{backgroundColor: colors.blue}]}>
-      <Text style={styles.titleButton}>Ajouter</Text>
+      style={[styles.button,{backgroundColor: colors.blue, width:"50%"}]}>
+       < ButtonClick title="Ajouter"/>
     </TouchableOpacity>         
      
     </View>
@@ -197,32 +204,35 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   searchSection: {
-    width: '90%',
-    height: 71,
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
-    paddingHorizontal: 20,
+    marginBottom:'15%',
+    justifyContent:'space-between'
   },
   input: {
-    flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    color:'black',
+     padding:10,
+    color:colors.black,
     fontWeight: 'bold',
-    color: '#424242',
     fontSize: 17,
-    marginLeft:20,
-    borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal:4,
+    borderRadius: 4,
+    width:'70%',
+    marginLeft:40
 
   },
+  title:{
+  
+    color:colors.black,
+    fontSize:30,
+    marginHorizontal:50,
+    fontWeight:'bold',
+    textAlign:'center',
+    marginBottom:30
+  
+},
   
 });
 

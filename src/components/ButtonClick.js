@@ -31,15 +31,13 @@ export default ButtonClick;
 const styles = StyleSheet.create({
   button: {
     width: '100%',
-    height:50,
     borderRadius: 10,
     marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
-
-    flexDirection: 'row',
     marginRight: 'auto',
     marginLeft: 'auto',
+    padding:10
   },
   Infoicon: {
     marginRight: 20,
@@ -48,5 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.white,
     fontWeight: '700',
+    marginTop:5
   },
 });

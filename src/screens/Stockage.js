@@ -5,16 +5,21 @@ import { useNavigation } from "@react-navigation/native";
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 import ButtonClick from '../components/ButtonClick'
+import Header from '../screens/Header'
 // import HomeScreen from './HomeScreen';
 const Stockage = () => {
     const navigation = useNavigation();
     return (
 
         <View style={styles.container}>
+            <View style={styles.headertop}>
+
+                <Header />
+            </View>
             <View style={styles.body} >
                 <View style={styles.left} >
                     <View style={styles.type}>
-                        <View style={{ borderColor: colors.primary, border: 2, borderWidth: 3, marginHorizontal: 10 }}></View>
+                        <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginHorizontal: 10 }}></View>
                         <Text style={styles.typeText} >smasung A02</Text>
                         <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
                     </View>
@@ -70,7 +75,7 @@ const Stockage = () => {
 
                     <ButtonClick title="Telechargement" />
 
-                  
+
 
                 </View>
 
@@ -114,7 +119,7 @@ const Stockage = () => {
                     </View>
                     {/* ///container */}
                     <ScrollView>
-                        <View style={styles.rightCenter} >
+                        {/* <View style={styles.rightCenter} >
 
                             <View style={styles.rightCenterright} >
                                 <Icon
@@ -165,7 +170,7 @@ const Stockage = () => {
 
 
 
-                        </View>
+                        </View> */}
 
                         <View style={styles.rightContainer}>
 
@@ -184,10 +189,10 @@ const Stockage = () => {
                             </View>
                             <View style={styles.buttomclick}>
 
-                            <ButtonClick title="Espace" />
+                                <ButtonClick title="Espace" />
                             </View>
 
-                          
+
 
                         </View>
 
@@ -208,19 +213,19 @@ const styles = StyleSheet.create({
     body: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 30,
-        flexWrap:'wrap'
-      },
+        marginTop: 10,
+        flexWrap: 'wrap'
+    },
     left: {
         width: '60%',
         marginHorizontal: 5
 
     },
     right: {
-        borderColor:colors.primary,
-        borderWidth:2,
-        flex:1,
-        width:'30%'
+        borderColor: colors.primary,
+        borderWidth: 2,
+        flex: 1,
+        width: '30%'
     },
     type: {
         marginVertical: 20,
@@ -266,7 +271,9 @@ const styles = StyleSheet.create({
         border: 2,
         borderWidth: 2,
         height: '15%',
-        position: 'relative'
+        position: 'relative',
+        marginBottom:'15%',
+        marginTop:10
 
     },
     clickIconDisplay: {
@@ -282,7 +289,7 @@ const styles = StyleSheet.create({
         bottom: 20,
         right: 20,
     },
-   
+
     cardstcok: {
 
         backgroundColor: colors.blue,
@@ -330,19 +337,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         overlayColor: colors.primary,
         borderWidth: 2,
-        margin:4
+        margin: 4
 
     },
     rightCenteText: {
         fontSize: 12
     },
     rightContainer: {
-        height:500,
-        marginTop: 12
+        height: 500,
+        marginTop: 12,
+        paddingHorizontal: 20
     },
     rightContainercard: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         flexWrap: 'wrap'
     },
     rightContainercardText: {
@@ -352,12 +360,12 @@ const styles = StyleSheet.create({
     },
 
     buttom: {
-        flexDirection:'row',
-        justifyContent:'space-between'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    buttomclick:{
-        width:'46%',
-        marginHorizontal:4
+    buttomclick: {
+        width: '46%',
+        marginHorizontal: 4
     }
 
 

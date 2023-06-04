@@ -19,7 +19,19 @@ const Exemple = () => {
                            <View style={styles.buttomheader}>
                              <ButtonClick  nameicon="close" typeicon="material-community" title="Statistiques" />
                            </View>
-
+                           <View style={styles.buttomheader}>
+                             <ButtonClick  nameicon="close" typeicon="material-community" title="crédits" />
+                           </View>
+                           <View style={styles.buttomheader}>
+                             <ButtonClick  nameicon="close" typeicon="material-community" title="stocks" />
+                           </View>
+                           <View style={styles.buttomheader}>
+                             <ButtonClick  nameicon="close" typeicon="material-community" title="export db" />
+                           </View>
+                           <View style={styles.buttomheader}>
+                             <ButtonClick  nameicon="close" typeicon="material-community" title="import db" />
+                           </View>
+                            
                              
                                 
                             </View>
@@ -40,7 +52,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   buttomheader:{
-    width:'28%'
+    width:'13%',
+    
   }
 });
 

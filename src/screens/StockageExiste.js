@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        paddingBottom: 20
+        padding: 5,
     },
     left: {
         width: '60%',
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
 
 
     },
@@ -223,7 +223,8 @@ const styles = StyleSheet.create({
     },
     cardstcokText: {
         fontSize: 25,
-        paddingLeft: 10
+        paddingLeft: 10,
+        color:colors.white
 
     },
 
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
 
     bottomcard:{
         
-        marginTop:300
+        marginTop:300,
     }
 
 

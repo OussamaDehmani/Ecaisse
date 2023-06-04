@@ -34,7 +34,6 @@ const AddSubcategory = ({ route }) => {
   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
 
     <View style={styles.container}>
 
@@ -71,12 +70,12 @@ const AddSubcategory = ({ route }) => {
       <TouchableOpacity
       activeOpacity={0.7}
       onPress={addSubCategory}
-      style={[styles.button,{backgroundColor: colors.blue}]}>
+      style={[styles.button,{backgroundColor: colors.blue, width:"92%",}]}>
+      
+      < ButtonClick title="Ajouter"/>
      
-      <Text style={styles.titleButton}>Ajouter</Text>
     </TouchableOpacity>
     </View>
-    </ScrollView>
 
   );
 };
@@ -95,12 +94,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
   },
   
-  titleButton: {
-    fontSize: 20,
-    color: colors.blue,
-    backgroundColor:colors.primary,
-    fontWeight: '700',
-  },
+ 
   container: {
     backgroundColor: '#fff',
     padding: 16,
@@ -111,15 +105,18 @@ const styles = StyleSheet.create({
   },
   containerTop: {
      marginTop:100,
-     marginBottom:40
+     paddingHorizontal:50,
+     width:'100%',
+     marginBottom:'10%'
   },
   title:{
   
-      color:colors.primary,
-      fontSize:20,
+      color:colors.black,
+      fontSize:30,
       marginHorizontal:50,
       fontWeight:'bold',
-      marginTop:20
+      marginTop:20,
+      textAlign:'center'
     
   },
   input: {
@@ -130,6 +127,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 4,
+    width:'100%'
   },
 });
 

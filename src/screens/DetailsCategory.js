@@ -12,6 +12,14 @@ import {
   ImageBackground,
   Alert, Modal, Pressable
 } from "react-native";
+import {
+  MenuContext,
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import { Ionicons } from '@expo/vector-icons';
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import { Icon } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
@@ -130,103 +138,115 @@ const DetailsCategory = ({ data }) => {
             </TouchableOpacity>
           </View>
           <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
-
-          <View style={styles.cardbuttom}>
-          <View style={styles.touchable}>
-
-    <TouchableOpacity 
-      onPress={() => setModalVisiblee(true)}
-    >
-      <Text style={styles.title}>...</Text>
-    
-    </TouchableOpacity>
-
-    <TouchableOpacity  
-    onPress={() => {
-
-      console.log("click card")
-    }} 
-    >
-      <Image
-        source={require('../../assets/smasung.png')}
-        style={styles.image} />
-      <Text style={styles.title}>Samsung</Text>
-    </TouchableOpacity>
-
-    </View>
+          <View >
+          <MenuContext  style={styles.popin}>
+                <View>
+                    <Menu>
+                        <MenuTrigger customStyles={{ triggerWrapper: { flexDirection: 'row' } }}>
+                            <Ionicons name="ellipsis-vertical" size={24} color="black" />
+                        </MenuTrigger>
 
 
+                        <MenuOptions style={styles.MenuPopin}>
+                            <MenuOption onSelect={() => alert(`Page addcategorie`)} text="Modifer" />
+                            <MenuOption onSelect={() => alert(`Request screen`)} text="Supprimer" />
 
-          { categories.map(el=>(
-          <View style={styles.touchable}>
-          <TouchableOpacity key={el.id} 
-          onPress={() => setModalVisiblee(true)}
-          >
-          <Text style={styles.title}>...</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-          onPress={() => {
-          navigation.navigate("subCategoy",el.id);
-          }} 
-          >
-          <Image source={{ uri: el.uri }} style={styles.image} />
-          <Text style={styles.title}>{el.name}</Text>
-          </TouchableOpacity>
+
+                        </MenuOptions>
+                    </Menu>
+                </View>
+            </MenuContext>
           </View>
-          ))}
-       
+          <View style={styles.cardbuttom}>
+         
+        
 
-
-
+            <View style={styles.touchable}>
+          
            
+{/* 
+              <TouchableOpacity
+                style={styles.iconTop}
+                onPress={() => setModalVisiblee(true)}
+              >
 
-      
+                <Icon
+                  type="entypo"
+                  name="plus"
+                  color={colors.primary}
+                  style={styles.image2}
+                  size={35}
+                />
+
+              </TouchableOpacity> */}
+
+
+
+              <TouchableOpacity
+                onPress={() => {
+
+                  console.log("click card")
+                }}
+              >
+                <Image
+                  source={require('../../assets/imagesSumsang.png')}
+                  style={styles.image} />
+                <Text style={styles.titlee}>Samsung</Text>
+              </TouchableOpacity>
+
+            </View>
+
+
+
+            {categories.map(el => (
+              <View style={styles.touchable}>
+                
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("subCategoy", el.id);
+                  }}
+                >
+                  <Image source={{ uri: el.uri }} style={styles.image} />
+                  <Text style={styles.titlee}>{el.name}</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+
+
+
+
+
+
+
 
 
             <View style={styles.touchable}>
 
-            <TouchableOpacity 
-                 
-                >
-                   <Text style={styles.title}></Text>
-                 
-                </TouchableOpacity>
+            
 
-                <TouchableOpacity
-                  onPress={() => {
+              <TouchableOpacity
+                onPress={() => {
 
-                    navigation.navigate("AddCategory");
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/Ajoute.jpeg')}
-                    style={styles.image} />
-                  <Text style={styles.title}>Ajouter</Text>
-                </TouchableOpacity>
-              
+                  navigation.navigate("AddCategory");
+                }}
+              >
+                <Image
+                  source={require('../../assets/Ajoute.jpeg')}
+                  style={styles.image} />
+                <Text style={styles.titlee}>Ajouter</Text>
+              </TouchableOpacity>
+
             </View>
 
-            
+
 
             {/*  end new card */}
 
           </View>
-          </View>
+        </View>
 
 
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              // border: 1,
-              // borderWidth: 1,
-              margin: 8,
-              paddingTop: 6,
-            }}
-          >
 
-          </View>
-        {/* </View> */}
       </ScrollView>
       <StatusBar style="light" backgroundColor="#2058c0" translucent={true} />
 
@@ -253,10 +273,10 @@ const DetailsCategory = ({ data }) => {
               />
             </Pressable>
           </View>
-          <RequestScreen/>
-          
+          <RequestScreen />
 
-          
+
+
         </View>
       </Modal>
 
@@ -271,12 +291,12 @@ const DetailsCategory = ({ data }) => {
             <TouchableOpacity onPress={() => setModalVisiblee(false)}>
               <Text style={styles.closeButton}>X</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.modalItem} 
-            onPress={() =>   navigation.navigate("AddCategory")}
+            <TouchableOpacity style={styles.modalItem}
+              onPress={() => navigation.navigate("AddCategory")}
             >
               <Text style={styles.modalItemText}>Modification</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.modalItem}  onPress={() =>   navigation.navigate("RequestScreen")}>
+            <TouchableOpacity style={styles.modalItem} onPress={() => navigation.navigate("RequestScreen")}>
               <Text style={styles.modalItemText}>Suppression</Text>
             </TouchableOpacity>
           </View>
@@ -288,7 +308,7 @@ const DetailsCategory = ({ data }) => {
   );
 };
 const styles = StyleSheet.create({
-  
+
   containerCard: {
 
 
@@ -300,7 +320,7 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: 32,
   },
-  title: {
+  titlee: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
@@ -322,7 +342,7 @@ const styles = StyleSheet.create({
   },
 
   image2: {
-    marginBottom:10
+    marginBottom: 10
   },
   image2cars: { height: ScreenWidth, width: ScreenHeight, borderRadius: 0 },
 
@@ -543,7 +563,7 @@ const styles = StyleSheet.create({
   cardbuttom: {
     flexDirection: 'row',
     flexWrap: "wrap",
-    justifyContent: 'space-between'
+    marginTop:-5,
 
   },
   cardbutto: {
@@ -555,6 +575,7 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     backgroundColor: 'white'
+
   },
   buttonClose: {
     marginTop: 20
@@ -562,28 +583,32 @@ const styles = StyleSheet.create({
 
   touchable: {
 
-    width: '20%',
-    marginHorizontal: 16,
+    width: '24%',
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
-    paddingVertical:10
-  
+    paddingVertical: 20,
+    textAlign:'center',
+    marginLeft:15,
+    position:'relative'
+    
+
   },
-  
+
   image: {
-    width: 64,
-    height: 64,
+    width: 80,
+    height: 80,
     borderRadius: 32,
-    marginLeft:10,
+    marginBottom:10
 
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
+    marginTop: 20,
   },
   modal: {
     flex: 1,
@@ -602,9 +627,9 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     color: '#007AFF',
-    marginBottom:6,
-    fontSize:20
-    
+    marginBottom: 6,
+    fontSize: 20
+
   },
   modalTitle: {
     fontSize: 18,
@@ -624,6 +649,25 @@ const styles = StyleSheet.create({
     color: '#007AFF',
   },
 
+  iconTop: {
+
+    position: 'absolute',
+    top: 10,
+    right: 5
+  },
+  popin:{
+
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 50,
+    backgroundColor: '#ecf0f1',
+    marginBottom:20
+  },
+  MenuPopin: {
+    padding: 10,
+    marginLeft: 10
+}
 
 
 

@@ -16,6 +16,7 @@ import StorageVendor from './src/screens/StorageVendor'
 import HomeScreen from './src/screens/HomeScreen';
 import Stockage from './src/screens/Stockage';
 import StockageExiste from './src/screens/StockageExiste';
+import TestComponents from './src/screens/TestComponents'
 import * as SQLite from 'expo-sqlite';
 import { useState, useEffect } from 'react';
 import * as Sharing from 'expo-sharing';
@@ -65,30 +66,63 @@ export default function App() {
     <NavigationContainer>
       <Home.Navigator>
       
+
       <Home.Screen 
                 name ="StockageExiste"
                 component = {StockageExiste}
                 options ={{headerShown:false}}
     />
 
-    
-          <Home.Screen 
+
+      <Home.Screen 
+                name ="TestComponents"
+                component = {TestComponents}
+                options ={{headerShown:false}}
+    />
+      <Home.Screen 
                 name ="Stockage"
                 component = {Stockage}
                 options ={{headerShown:false}}
     />
-
       <Home.Screen 
                 name ="StorageVendor"
                 component = {StorageVendor}
                 options ={{headerShown:false}}
     />
-           
-            <Home.Screen 
+      <Home.Screen 
+                name ="subCategoy"
+                component = {SubCategory}
+                options ={{headerShown:true}}
+            /> 
+            
+
+    
+
+    
+      <Home.Screen 
+                name ="AddSubcategory"
+                component = {AddSubcategory}
+                options ={{headerShown:true}}
+            /> 
+      <Home.Screen 
+                name ="AddCategory"
+                component = {AddCategory}
+                options ={{headerShown:true}}
+            /> 
+
+
+     
+      <Home.Screen 
                 name ="HomeScreen"
                 component = {HomeScreen}
                 options ={{headerShown:false}}
     />
+
+    
+
+      
+           
+          
     
              <Home.Screen 
                 name ="DestinationScreen"
@@ -97,16 +131,7 @@ export default function App() {
             /> 
         
           
-              <Home.Screen 
-                name ="subCategoy"
-                component = {SubCategory}
-                options ={{headerShown:true}}
-            /> 
-               <Home.Screen 
-                name ="AddCategory"
-                component = {AddCategory}
-                options ={{headerShown:true}}
-            /> 
+            
             
             
             <Home.Screen 
@@ -114,11 +139,7 @@ export default function App() {
                 component = {DetailsCategory}
                 options ={{headerShown:true}}
             /> 
-            <Home.Screen 
-                name ="AddSubcategory"
-                component = {AddSubcategory}
-                options ={{headerShown:true}}
-            /> 
+           
 
         </Home.Navigator>
     </NavigationContainer>
