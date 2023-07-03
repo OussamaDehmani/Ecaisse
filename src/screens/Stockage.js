@@ -73,7 +73,11 @@ const Stockage = () => {
                         </View>
                     </View>
 
+                    <View style={styles.buttombuttom}>
                     <ButtonClick title="Telechargement" />
+                        </View>
+
+                
 
 
 
@@ -366,6 +370,10 @@ const styles = StyleSheet.create({
     buttomclick: {
         width: '46%',
         marginHorizontal: 4
+    },
+
+    buttombuttom:{
+        marginBottom:0
     }
 
 

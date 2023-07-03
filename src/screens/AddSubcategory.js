@@ -67,12 +67,14 @@ const AddSubcategory = ({ route }) => {
         onChangeText={(text) => setRetailPrice(text)}
       />
       </View>
+
+
       <TouchableOpacity
       activeOpacity={0.7}
       onPress={addSubCategory}
-      style={[styles.button,{backgroundColor: colors.blue, width:"92%",}]}>
+     >
       
-      < ButtonClick title="Ajouter"/>
+      < ButtonClick title="Ajouter" />
      
     </TouchableOpacity>
     </View>

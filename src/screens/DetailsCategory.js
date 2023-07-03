@@ -137,49 +137,33 @@ const DetailsCategory = ({ data }) => {
               />
             </TouchableOpacity>
           </View>
+
+
+
           <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
           <View >
-          <MenuContext  style={styles.popin}>
-                <View>
-                    <Menu>
-                        <MenuTrigger customStyles={{ triggerWrapper: { flexDirection: 'row' } }}>
-                            <Ionicons name="ellipsis-vertical" size={24} color="black" />
-                        </MenuTrigger>
+            <MenuContext style={styles.popin}>
+              <View>
+                <Menu>
+                  <MenuTrigger customStyles={{ triggerWrapper: { flexDirection: 'row' } }}>
+                    <Ionicons name="ellipsis-vertical" size={24} color="black" />
+                  </MenuTrigger>
 
 
-                        <MenuOptions style={styles.MenuPopin}>
-                            <MenuOption onSelect={() => alert(`Page addcategorie`)} text="Modifer" />
-                            <MenuOption onSelect={() => alert(`Request screen`)} text="Supprimer" />
-
-
-                        </MenuOptions>
-                    </Menu>
-                </View>
+                  <MenuOptions >
+                    <MenuOption onSelect={() => alert(`Page addcategorie`)} text="Modifer" />
+                    <MenuOption onSelect={() => alert(`Request screen`)} text="Supprimer" />
+                  </MenuOptions>
+                </Menu>
+              </View>
             </MenuContext>
           </View>
           <View style={styles.cardbuttom}>
-         
-        
 
             <View style={styles.touchable}>
-          
-           
-{/* 
-              <TouchableOpacity
-                style={styles.iconTop}
-                onPress={() => setModalVisiblee(true)}
-              >
-
-                <Icon
-                  type="entypo"
-                  name="plus"
-                  color={colors.primary}
-                  style={styles.image2}
-                  size={35}
-                />
-
-              </TouchableOpacity> */}
-
+              
+              {/* menu_popin */}
+               <Text style={styles.titlee}>...</Text>
 
 
               <TouchableOpacity
@@ -188,6 +172,7 @@ const DetailsCategory = ({ data }) => {
                   console.log("click card")
                 }}
               >
+
                 <Image
                   source={require('../../assets/imagesSumsang.png')}
                   style={styles.image} />
@@ -200,7 +185,7 @@ const DetailsCategory = ({ data }) => {
 
             {categories.map(el => (
               <View style={styles.touchable}>
-                
+
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("subCategoy", el.id);
@@ -222,7 +207,7 @@ const DetailsCategory = ({ data }) => {
 
             <View style={styles.touchable}>
 
-            
+
 
               <TouchableOpacity
                 onPress={() => {
@@ -563,7 +548,7 @@ const styles = StyleSheet.create({
   cardbuttom: {
     flexDirection: 'row',
     flexWrap: "wrap",
-    marginTop:-5,
+    marginTop: -5,
 
   },
   cardbutto: {
@@ -590,10 +575,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'white',
     paddingVertical: 20,
-    textAlign:'center',
-    marginLeft:15,
-    position:'relative'
-    
+    textAlign: 'center',
+    marginLeft: 15,
+    position: 'relative'
+
 
   },
 
@@ -601,7 +586,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 32,
-    marginBottom:10
+    marginBottom: 10
 
   },
   title: {
@@ -655,19 +640,17 @@ const styles = StyleSheet.create({
     top: 10,
     right: 5
   },
-  popin:{
+  popin: {
 
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 50,
     backgroundColor: '#ecf0f1',
-    marginBottom:20
+    marginBottom: 20
   },
-  MenuPopin: {
-    padding: 10,
-    marginLeft: 10
-}
+
+
 
 
 

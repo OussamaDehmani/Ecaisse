@@ -17,6 +17,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import Stockage from './src/screens/Stockage';
 import StockageExiste from './src/screens/StockageExiste';
 import TestComponents from './src/screens/TestComponents'
+import Statistique from './src/screens/Statistique'
 import * as SQLite from 'expo-sqlite';
 import { useState, useEffect } from 'react';
 import * as Sharing from 'expo-sharing';
@@ -65,11 +66,62 @@ export default function App() {
   return (
     <NavigationContainer>
       <Home.Navigator>
-      
 
+
+   <Home.Screen 
+                name ="DetailsCategory"
+                component = {DetailsCategory}
+                options ={{headerShown:true}}
+            /> 
       <Home.Screen 
                 name ="StockageExiste"
                 component = {StockageExiste}
+                options ={{headerShown:false}}
+    />
+  
+    
+
+      <Home.Screen 
+                name ="DestinationScreen"
+                component = {DestinationScreen}
+                options ={{headerShown:true}}
+            /> 
+        
+
+      <Home.Screen 
+                name ="HomeScreen"
+                component = {HomeScreen}
+                options ={{headerShown:false}}
+    />
+
+
+      <Home.Screen 
+                name ="AddCategory"
+                component = {AddCategory}
+                options ={{headerShown:true}}
+            /> 
+
+      <Home.Screen 
+                name ="AddSubcategory"
+                component = {AddSubcategory}
+                options ={{headerShown:true}}
+            /> 
+
+      <Home.Screen 
+                name ="subCategoy"
+                component = {SubCategory}
+                options ={{headerShown:true}}
+            /> 
+
+      <Home.Screen 
+                name ="StorageVendor"
+                component = {StorageVendor}
+                options ={{headerShown:false}}
+    />
+      
+      <Home.Screen 
+                name ="Stockage"
+                component = {Stockage}
                 options ={{headerShown:false}}
     />
 
@@ -79,67 +131,18 @@ export default function App() {
                 component = {TestComponents}
                 options ={{headerShown:false}}
     />
+
+
       <Home.Screen 
-                name ="Stockage"
-                component = {Stockage}
+                name ="Statistique"
+                component = {Statistique}
                 options ={{headerShown:false}}
     />
-      <Home.Screen 
-                name ="StorageVendor"
-                component = {StorageVendor}
-                options ={{headerShown:false}}
-    />
-      <Home.Screen 
-                name ="subCategoy"
-                component = {SubCategory}
-                options ={{headerShown:true}}
-            /> 
-            
-
-    
-
-    
-      <Home.Screen 
-                name ="AddSubcategory"
-                component = {AddSubcategory}
-                options ={{headerShown:true}}
-            /> 
-      <Home.Screen 
-                name ="AddCategory"
-                component = {AddCategory}
-                options ={{headerShown:true}}
-            /> 
 
 
      
-      <Home.Screen 
-                name ="HomeScreen"
-                component = {HomeScreen}
-                options ={{headerShown:false}}
-    />
-
     
-
-      
-           
-          
     
-             <Home.Screen 
-                name ="DestinationScreen"
-                component = {DestinationScreen}
-                options ={{headerShown:true}}
-            /> 
-        
-          
-            
-            
-            
-            <Home.Screen 
-                name ="DetailsCategory"
-                component = {DetailsCategory}
-                options ={{headerShown:true}}
-            /> 
-           
 
         </Home.Navigator>
     </NavigationContainer>

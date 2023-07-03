@@ -153,7 +153,7 @@ const initializeFolder = async () => {
             <TouchableOpacity
       activeOpacity={0.7}
       onPress={addName}
-      style={[styles.button,{backgroundColor: colors.blue, width:"50%"}]}>
+      style={{width:'70%', marginHorizontal:200}}>
        < ButtonClick title="Ajouter"/>
     </TouchableOpacity>         
      

@@ -70,7 +70,9 @@ const StorageVendor = () => {
 
                     <ButtonClick title="Telechargement" /> */}
 
-                        <HomeScreen></HomeScreen>
+                      
+
+                        {/* <HomeScreen /> */}
 
                 </View>
 
