@@ -11,7 +11,7 @@ import {
   StatusBar,
   ImageBackground,
 } from "react-native";
-import * as SQLite from 'expo-sqlite';
+import * as SQLite from "expo-sqlite";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 import { Icon } from "react-native-elements";
@@ -19,11 +19,10 @@ import { colors, parameters } from "../global/styles";
 import { useNavigation } from "@react-navigation/native";
 import { SCREEN_HEIGHT, WINDOW_WIDTH } from "@gorhom/bottom-sheet";
 import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
-import Essayer from '../components/Essayer';
-
+import Essayer from "../components/Essayer";
 
 const HomeScreen = () => {
-  const [db, setDb] = useState(SQLite.openDatabase('mynewdb.db'));
+  const [db, setDb] = useState(SQLite.openDatabase("mynewdb.db"));
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -32,11 +31,12 @@ const HomeScreen = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-   
-    db.transaction(tx => {
-      tx.executeSql('SELECT * FROM categories', null,
-        (txObj, resultSet) => setCategories(resultSet.rows._array),
-        (txObj, error) => console.log(error)
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM categories",
+        null,
+        (txObj, resultSet) => setCategories(resultSet.rows._array)
+        // (txObj, error) => console.log(error)
       );
     });
 
@@ -45,27 +45,22 @@ const HomeScreen = () => {
   return (
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
-      { }
+      {}
       {/* <ScrollView bounces={false}> */}
-        
-<View>
-<View>
-        </View>
+
+      <View>
+        <View></View>
         <View>
-        
-        <View style={styles.cardbutto}>
-             {/*  start new card */}
-             <TouchableOpacity
-            style={{ marginTop: 5 }}
-            onPress={() => {
-            
-              navigation.navigate("DetailsCategory");
-            }}
-          >
-           <View style={styles.card}>
-                <View
-                  style={{ ...styles.view2, paddingTop: 2 }}
-                >
+          <View style={styles.cardbutto}>
+            {/*  start new card */}
+            <TouchableOpacity
+              style={{ marginTop: 5 }}
+              onPress={() => {
+                navigation.navigate("DetailsCategory");
+              }}
+            >
+              <View style={styles.card}>
+                <View style={{ ...styles.view2, paddingTop: 2 }}>
                   <Icon
                     type="material-community"
                     name="car-back"
@@ -78,19 +73,16 @@ const HomeScreen = () => {
                   <Text style={styles.title}>telephone</Text>
                 </View>
               </View>
-          </TouchableOpacity>
-             {/*  start new card */}
-             <TouchableOpacity
-            style={{ marginTop: 5 }}
-            onPress={() => {
-            
-              navigation.navigate("RequestScreen");
-            }}
-          >
-           <View style={{...styles.card, backgroundColor:colors.primary}}>
-                <View
-                  style={{ ...styles.view2, paddingTop: 2 }}
-                >
+            </TouchableOpacity>
+            {/*  start new card */}
+            <TouchableOpacity
+              style={{ marginTop: 5 }}
+              onPress={() => {
+                navigation.navigate("RequestScreen");
+              }}
+            >
+              <View style={{ ...styles.card, backgroundColor: colors.primary }}>
+                <View style={{ ...styles.view2, paddingTop: 2 }}>
                   <Icon
                     type="material-community"
                     name="car-back"
@@ -100,67 +92,63 @@ const HomeScreen = () => {
                   />
                 </View>
                 <View>
-                  <Text style={{...styles.title,color:colors.white}}>accessoire</Text>
+                  <Text style={{ ...styles.title, color: colors.white }}>
+                    accessoire
+                  </Text>
                 </View>
               </View>
-          </TouchableOpacity>
-          
-           </View>
-           <View style={{borderColor:colors.primary, border:2,borderWidth:1,marginBottom:20,marginHorizontal:10 }}></View>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              borderColor: colors.primary,
+              border: 2,
+              borderWidth: 1,
+              marginBottom: 20,
+              marginHorizontal: 10,
+            }}
+          ></View>
 
-         <View style={styles.cardbuttom}> 
-          
-         <Essayer
-        title="Iphone"
-        image={require('../../assets/Iphon.png')}
-        onPress={() => {
-            
-          navigation.navigate("subCategoy");
-        }}
-      />
-         <Essayer
-        title="Huawei"
-        image={require('../../assets/huawaei1.jpeg')}
-      
-      />
-       <Essayer
-        title="Show me"
-        image={require('../../assets/Showme.png')}
-        
-      />
-       <Essayer
-        title="Nokiya"
-        image={require('../../assets/nokia1.jpeg')}
-        
-      />
-       <Essayer
-        title="smasung"
-        image={require('../../assets/sumsung2.png')}
-       
-      />
-       <Essayer
-        title="Autre"
-        image={require('../../assets/Iphone.jpeg')}
-        
-      />  
-      <Essayer
-        title="Autre"
-        image={require('../../assets/Iphone.jpeg')}
-        
-      />
-         <Essayer
-        title="Ajouter"
-        image={require('../../assets/Ajoute.jpeg')}
-        onPress={() => {
-            
-          navigation.navigate("AddCategory");
-        }}
-        
-      />
-
-
-           </View>
-
+          <View style={styles.cardbuttom}>
+            <Essayer
+              title="Iphone"
+              image={require("../../assets/Iphon.png")}
+              onPress={() => {
+                navigation.navigate("subCategoy");
+              }}
+            />
+            <Essayer
+              title="Huawei"
+              image={require("../../assets/huawaei1.jpeg")}
+            />
+            <Essayer
+              title="Show me"
+              image={require("../../assets/Showme.png")}
+            />
+            <Essayer
+              title="Nokiya"
+              image={require("../../assets/nokia1.jpeg")}
+            />
+            <Essayer
+              title="smasung"
+              image={require("../../assets/sumsung2.png")}
+            />
+            <Essayer
+              title="Autre"
+              image={require("../../assets/Iphone.jpeg")}
+            />
+            <Essayer
+              title="Autre"
+              image={require("../../assets/Iphone.jpeg")}
+            />
+            <Essayer
+              title="Ajouter"
+              image={require("../../assets/Ajoute.jpeg")}
+              onPress={() => {
+                navigation.navigate("AddCategory");
+              }}
+            />
+          </View>
 
           <View
             style={{
@@ -169,13 +157,9 @@ const HomeScreen = () => {
               margin: 8,
               paddingTop: 6,
             }}
-          >
-           
-          </View>
+          ></View>
         </View>
-
-       
-</View>
+      </View>
       {/* </ScrollView> */}
       <StatusBar style="light" backgroundColor="#2058c0" translucent={true} />
     </View>
@@ -305,7 +289,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 12,
     marginBottom: 10,
-
   },
 
   title: {
@@ -339,8 +322,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 2,
     borderRadius: 20,
-
-
   },
 
   view5: {
@@ -432,19 +413,15 @@ const styles = StyleSheet.create({
   view9: { width: 4, height: 4, borderRadius: 2, backgroundColor: "white" },
   //////////////////////////////
 
- cardbuttom:{
-   flexDirection:'row',
-   flexWrap:"wrap",
-   justifyContent:'space-between'
-
- },
- cardbutto:{
-  flexDirection:'row',
-  flexWrap:"wrap",
-  justifyContent:'center',
-  
-}
-
-
+  cardbuttom: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  cardbutto: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
 });
 export default HomeScreen;

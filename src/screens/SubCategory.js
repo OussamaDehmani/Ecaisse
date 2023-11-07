@@ -18,49 +18,45 @@ import { colors, parameters } from "../global/styles";
 import { useNavigation } from "@react-navigation/native";
 import { SCREEN_HEIGHT, WINDOW_WIDTH } from "@gorhom/bottom-sheet";
 import { ScreenHeight, ScreenWidth } from "react-native-elements/dist/helpers";
-import DetailsCategory from '../screens/DetailsCategory'
-import Essayer from '../components/Essayer';
-import * as SQLite from 'expo-sqlite';
+import DetailsCategory from "../screens/DetailsCategory";
+import Essayer from "../components/Essayer";
+import * as SQLite from "expo-sqlite";
 
 const SubCategory = ({ route }) => {
-  const id= route.params;
+  const id = route.params;
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   const _map = useRef(1);
   const [latlng, setLatLng] = useState({});
   const [subcategories, setSubcategories] = useState([]);
-  const db = SQLite.openDatabase('mynewdb.db');
+  const db = SQLite.openDatabase("mynewdb.db");
   useEffect(() => {
- //get all subcategories from db
-  db.transaction(tx => {
-    tx.executeSql('SELECT * FROM sub_categories1 WHERE idCategory = ?', [id],
-      (txObj, resultSet) => setSubcategories(resultSet.rows._array),
-      (txObj, error) => console.log(error)
-    );
-  }
-  );
-}, [id])
+    //get all subcategories from db
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM sub_categories1 WHERE idCategory = ?",
+        [id],
+        (txObj, resultSet) => setSubcategories(resultSet.rows._array)
+        // (txObj, error) => console.log(error)
+      );
+    });
+  }, [id]);
 
   return (
     // <View>
     <View style={styles.container} colors={[colors.bg, colors.bg]}>
-      { }
+      {}
       <ScrollView bounces={false}>
         <View>
           <View style={styles.cardbutto}>
-
-
             <TouchableOpacity
               onPress={() => {
-
                 navigation.navigate("RequestScreen");
               }}
             >
               <View style={{ ...styles.card, backgroundColor: colors.primary }}>
-                <View
-                  style={{ ...styles.view2 }}
-                >
+                <View style={{ ...styles.view2 }}>
                   <Icon
                     type="material-community"
                     name="car-back"
@@ -70,60 +66,66 @@ const SubCategory = ({ route }) => {
                   />
                 </View>
                 <View>
-                  <Text style={{ ...styles.title, color: colors.white }}>Iphone</Text>
+                  <Text style={{ ...styles.title, color: colors.white }}>
+                    Iphone
+                  </Text>
                 </View>
               </View>
             </TouchableOpacity>
-
           </View>
-          <View style={{ borderColor: colors.primary, border: 2, borderWidth: 1, marginBottom: 20, marginHorizontal: 10 }}></View>
+          <View
+            style={{
+              borderColor: colors.primary,
+              border: 2,
+              borderWidth: 1,
+              marginBottom: 20,
+              marginHorizontal: 10,
+            }}
+          ></View>
 
           <View style={styles.cardbuttom}>
+            {subcategories.map((el) => (
+              <TouchableOpacity
+                style={styles.touchableCard}
+                key={el.id}
+                onPress={() => {
+                  navigation.navigate("subCategoy", el.id);
+                }}
+              >
+                <View style={styles.containerCard}>
+                  <Icon
+                    type="material-community"
+                    name="delete-circle"
+                    color={colors.primary}
+                    style={styles.imageCard}
+                    size={35}
+                  />
+                  <Image
+                    source={require("../../assets/Iphon.png")}
+                    style={styles.imageCard}
+                  />
+                  <Text style={styles.titleCard}>{el.name}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
 
-
-          { subcategories.map(el=>(
-             <TouchableOpacity  style={styles.touchableCard} key={el.id}                           
-             onPress={() => {
-              navigation.navigate("subCategoy",el.id);
-            }}             >
-             <View style={styles.containerCard}>
-             <Icon
-                           type="material-community"
-                           name="delete-circle"
-                           color={colors.primary}
-                           style={styles.imageCard}
-                           size={35}
-                         />
-               <Image source={require('../../assets/Iphon.png')} style={styles.imageCard} />
-                 <Text style={styles.titleCard}>{el.name}</Text>
-             </View>
-           </TouchableOpacity>
-          ))}
-        
-    
-
-<TouchableOpacity  style={styles.touchableCard}                           
+            <TouchableOpacity
+              style={styles.touchableCard}
               onPress={() => {
-            
-                navigation.navigate("AddSubcategory",id);
-              }}>
-             <View style={styles.containerCard}>
-            
-               <Image source={require('../../assets/Ajoute.jpeg')} style={styles.imageCard} />
-                 <Text style={styles.titleCard}>Ajouter</Text>
-             </View>
-           </TouchableOpacity>
-           
-       
-          
-        
+                navigation.navigate("AddSubcategory", id);
+              }}
+            >
+              <View style={styles.containerCard}>
+                <Image
+                  source={require("../../assets/Ajoute.jpeg")}
+                  style={styles.imageCard}
+                />
+                <Text style={styles.titleCard}>Ajouter</Text>
+              </View>
+            </TouchableOpacity>
 
             {/*  end new card */}
-
           </View>
-
-
-
 
           <View
             style={{
@@ -173,21 +175,17 @@ const SubCategory = ({ route }) => {
 };
 const styles = StyleSheet.create({
   touchableCard: {
-   
-    width:'20%',
-    margin:5,
-    marginHorizontal:16,
-    alignItems: 'center',
+    width: "20%",
+    margin: 5,
+    marginHorizontal: 16,
+    alignItems: "center",
     // justifyContent:'center',
     borderWidth: 1,
     borderRadius: 8,
-    backgroundColor:'white'
+    backgroundColor: "white",
   },
   containerCard: {
-    
-  
     padding: 6,
-    
   },
   imageCard: {
     width: 64,
@@ -196,7 +194,7 @@ const styles = StyleSheet.create({
   },
   titleCard: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.primary,
   },
   sections2: {
@@ -204,7 +202,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop:'10%',
+    marginTop: "10%",
     backgroundColor: colors.grey10,
     // paddingBottom: 30,
     // paddingTop: parameters.statusBarHeight,
@@ -446,18 +444,14 @@ const styles = StyleSheet.create({
   //////////////////////////////
 
   cardbuttom: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'space-between'
-
+    justifyContent: "space-between",
   },
   cardbutto: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'center',
-
-  }
-
-
+    justifyContent: "center",
+  },
 });
 export default SubCategory;
